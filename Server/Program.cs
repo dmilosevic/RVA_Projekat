@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Common.Model;
+using Server.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +12,17 @@ namespace Server
     {
         static void Main(string[] args)
         {
+            Console.ReadLine();
+            using (var context = new DataContext())
+            {
+                var subs = new Substation() { Name = "dostanice" };
+
+                context.Substations.Add(subs);
+
+                context.Users.Add(new User("admin", "admin") { isAdmin = true, FirstName = "Danil", LastName = "Ishutin" });
+                context.SaveChanges();
+            }
+            Console.ReadLine();
         }
     }
 }
