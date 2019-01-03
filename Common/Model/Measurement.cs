@@ -13,6 +13,13 @@ namespace Common.Model
         public string Unit { get; set; }
         public float Value { get; set; }
 
+        public DateTime DateTime { get; set; }
+
         public Device Measurement_Device { get; set; }
+
+        public Measurement()
+        {
+
+        }
     }
 }

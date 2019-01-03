@@ -12,6 +12,12 @@ namespace Common.Model
         public string Location { get; set; }
         public string Name { get; set; }
 
-        List<Device> Devices { get; set; }
+        public List<Device> Devices { get; set; }
+
+        public Substation()
+        {
+            Devices = new List<Device>();
+
+        }
     }
 }

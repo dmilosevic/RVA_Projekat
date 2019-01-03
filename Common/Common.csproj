@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IData.cs" />
     <Compile Include="Contracts\IUser.cs" />
     <Compile Include="Model\Device.cs" />
     <Compile Include="Model\Measurement.cs" />

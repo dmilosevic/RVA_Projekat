@@ -25,8 +25,6 @@ namespace Server
             //    context.SaveChanges();
             //}
 
-            //testing
-
 
             Console.ReadLine();
         }

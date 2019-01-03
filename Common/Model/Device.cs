@@ -14,5 +14,10 @@ namespace Common.Model
         public Substation Device_Substation { get; set; }
         public List<Measurement> Measurements { get; set; }
 
+
+        public Device()
+        {
+            Measurements = new List<Measurement>();
+        }
     }
 }
