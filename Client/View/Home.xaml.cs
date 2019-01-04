@@ -1,4 +1,4 @@
-﻿using Client.Proxy;
+﻿using Common.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,22 +11,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Client
+namespace Client.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Home.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Home : Window
     {
-        public MainWindow()
+        public Home(User loggedInUser)
         {
             InitializeComponent();
-            
+            label.Content += "\nWelome, " + loggedInUser.Username;
         }
-
-        
     }
 }
