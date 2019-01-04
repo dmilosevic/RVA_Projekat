@@ -16,10 +16,11 @@ namespace Server
         {
             Console.ReadLine();
 
-            UserServer server1 = new UserServer();
-            DataServer server2 = new DataServer();
-            server1.OpenServer();
-            server2.OpenServer();
+            UserServer userServer = new UserServer();
+            DataServer dataServer = new DataServer();
+            userServer.OpenServer();
+            dataServer.OpenServer();
+            Console.WriteLine("Servers are up and running...\nPress enter to exit");
             //using (var context = new DataContext())
             //{
             //    var subs = new Substation() { Name = "dostanice" };
@@ -33,8 +34,8 @@ namespace Server
 
             Console.ReadLine();
 
-            server1.CloseServer();
-            server2.CloseServer();
+            userServer.CloseServer();
+            dataServer.CloseServer();
         }
     }
 }
