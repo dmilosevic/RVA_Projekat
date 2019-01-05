@@ -104,7 +104,7 @@ namespace Server.Services
                 {
                     var measurement = context.Measurements.FirstOrDefault(x => x.Id == id);
                     if (measurement == null)
-                        return false;
+                        return false;                    
 
                     context.Measurements.Remove(measurement);
                     context.SaveChanges();
@@ -122,6 +122,24 @@ namespace Server.Services
                     var station = context.Substations.FirstOrDefault(x => x.Id == id);
                     if (station == null)
                         return false;
+
+                    //first delete containing devices
+                    var devicesInThisSubstation = GetDevices(new Substation() { Id = id });
+                    foreach (var device in devicesInThisSubstation)
+                    {
+                        foreach (var measure in GetMeasurements(device))
+                        {
+                            context.Measurements.Attach(measure);
+                            context.Measurements.Remove(measure);
+                            context.SaveChanges();
+                            
+                        }
+
+                        context.Devices.Attach(device);
+                        context.Devices.Remove(device);
+                        context.SaveChanges();
+                    }
+
 
                     context.Substations.Remove(station);
                     context.SaveChanges();

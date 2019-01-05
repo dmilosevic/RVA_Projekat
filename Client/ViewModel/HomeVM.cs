@@ -58,7 +58,7 @@ namespace Client.ViewModel
             set
             {
                 devices = value;
-                PropertyChanged(this, new PropertyChangedEventArgs(nameof(Devices)));
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(Devices)));
             }
         }
         public List<Measurement> Measurements
@@ -70,7 +70,7 @@ namespace Client.ViewModel
             set
             {
                 measurements = value;
-                PropertyChanged(this, new PropertyChangedEventArgs(nameof(Measurements)));
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(Measurements)));
             }
         }
 
@@ -128,15 +128,9 @@ namespace Client.ViewModel
         {
             Substations = DataProxy.Instance.Proxy.GetAllSubstations();
 
-            if (selectedSubstation != null)
-            {
-                Devices = DataProxy.Instance.Proxy.GetDevices(selectedSubstation);
-            }
+            Devices = selectedSubstation != null ? DataProxy.Instance.Proxy.GetDevices(selectedSubstation) : null;
 
-            if (selectedDevice != null)
-            {
-                Measurements = DataProxy.Instance.Proxy.GetMeasurements(selectedDevice);
-            }
+            Measurements = selectedDevice != null ? DataProxy.Instance.Proxy.GetMeasurements(selectedDevice) : null;
         }
 
         public void OnPropertyChanged(PropertyChangedEventArgs e)
