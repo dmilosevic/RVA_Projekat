@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,10 @@ namespace Client.View
     /// </summary>
     public partial class EditSubstation : Window
     {
-        public EditSubstation()
+        public EditSubstation(HomeVM home)
         {
             InitializeComponent();
+            //set data context
         }
     }
 }

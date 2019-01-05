@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Client.Commands.OpenDialogs
 {
-    public class AddSubstationDialog : BaseCommand
+    public class OpenAddSubstation : BaseCommand
     {
         public HomeVM viewModel = null;
 
@@ -17,7 +17,7 @@ namespace Client.Commands.OpenDialogs
             window.ShowDialog();
         }
 
-        public AddSubstationDialog(HomeVM home)
+        public OpenAddSubstation(HomeVM home)
         {
             this.viewModel = home;
         }

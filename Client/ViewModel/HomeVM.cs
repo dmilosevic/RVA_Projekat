@@ -81,7 +81,7 @@ namespace Client.ViewModel
         //commands
         public SubstationSelectionChanged selectedSubstationChangedCmd { get; set; }
         public DeviceSelectionChanged  selectedDeviceChangedCmd { get; set; }
-        public AddSubstationDialog openAddSubstationDialogCmd { get; set; }
+        public OpenAddSubstation openAddSubstationDialogCmd { get; set; }
         public DeleteSubstation deleteSubstationCmd { get; set; }
         public RedoCommand redoCmd { get; set; }
         public UndoCommand undoCmd { get; set; }
@@ -102,7 +102,7 @@ namespace Client.ViewModel
 
             selectedSubstationChangedCmd = new SubstationSelectionChanged(this);
             selectedDeviceChangedCmd = new DeviceSelectionChanged(this);
-            openAddSubstationDialogCmd = new AddSubstationDialog(this);
+            openAddSubstationDialogCmd = new OpenAddSubstation(this);
             deleteSubstationCmd = new DeleteSubstation(this);
             redoCmd = new RedoCommand(this);
             undoCmd = new UndoCommand(this);

@@ -61,7 +61,11 @@
     <Compile Include="Commands\DeleteSubstation.cs" />
     <Compile Include="Commands\DeviceSelectionChanged.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
-    <Compile Include="Commands\OpenDialogs\AddSubstationDialog.cs" />
+    <Compile Include="Commands\OpenDialogs\OpenAddSubstation.cs" />
+    <Compile Include="Commands\OpenDialogs\OpenAddUser.cs" />
+    <Compile Include="Commands\OpenDialogs\OpenDataConflict.cs" />
+    <Compile Include="Commands\OpenDialogs\OpenEditSubstation.cs" />
+    <Compile Include="Commands\OpenDialogs\OpenEditUserData.cs" />
     <Compile Include="Commands\RedoCommand.cs" />
     <Compile Include="Commands\SubstationSelectionChanged.cs" />
     <Compile Include="Commands\UndoCommand.cs" />
