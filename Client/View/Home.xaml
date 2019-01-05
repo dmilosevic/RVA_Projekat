@@ -35,6 +35,8 @@
         <Button x:Name="btnDeleteSubstation" Command="{Binding deleteSubstationCmd}" CommandParameter="{Binding ElementName=lboxSubstations, Path=SelectedItem}" Content="Delete Substation" HorizontalAlignment="Left" Margin="178,31,0,0" VerticalAlignment="Top" Width="106"/>
         <Button x:Name="btnUndo" Content="Undo" Command="{Binding undoCmd}" HorizontalAlignment="Left" Margin="367,31,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="btnRedo" Content="Redo" Command="{Binding redoCmd}" HorizontalAlignment="Left" Margin="465,31,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnAddUser" Content="Add new user" Visibility="{Binding Path=visibleIfAdmin}" HorizontalAlignment="Left" Margin="596,31,0,0" VerticalAlignment="Top" Width="86"/>
+        <Button x:Name="btnSignOut" Content="Sign out" HorizontalAlignment="Left" Margin="707,387,0,0" VerticalAlignment="Top" Width="75" Height="23"/>
 
     </Grid>
 </Window>

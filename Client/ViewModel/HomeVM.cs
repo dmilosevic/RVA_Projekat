@@ -17,7 +17,7 @@ namespace Client.ViewModel
         List<Device> devices = null;
         List<Substation> substations = null;
         List<Measurement> measurements = null;
-
+        public string visibleIfAdmin { get; set; }
 
         //PROPERTIES
         #region Undo/Redo properties
@@ -98,6 +98,8 @@ namespace Client.ViewModel
         /// </summary>
         public HomeVM()
         {
+            
+
             selectedSubstationChangedCmd = new SubstationSelectionChanged(this);
             selectedDeviceChangedCmd = new DeviceSelectionChanged(this);
             openAddSubstationDialogCmd = new AddSubstationDialog(this);
@@ -120,7 +122,8 @@ namespace Client.ViewModel
 
 
             CurrentUser = UserProxy.Instance.Proxy.Login("admin", "admin");
-            
+            visibleIfAdmin = CurrentUser.isAdmin ? "Visible" : "Hidden"; // show/hide GUI elements based on priviledge
+
             RefreshData();           
         }
 
