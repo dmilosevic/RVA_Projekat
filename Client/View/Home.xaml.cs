@@ -1,4 +1,5 @@
-﻿using Common.Model;
+﻿using Client.ViewModel;
+using Common.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,17 @@ namespace Client.View
     /// </summary>
     public partial class Home : Window
     {
+
+        public Home()
+        {
+            InitializeComponent();
+            DataContext = new HomeVM();
+        }
+        
         public Home(User loggedInUser)
         {
             InitializeComponent();
-            label.Content += "\nWelome, " + loggedInUser.Username;
+            DataContext = new HomeVM(loggedInUser);
         }
     }
 }

@@ -21,5 +21,10 @@ namespace Common.Model
         {
 
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0}_{1} = {2} [{3}]", Id, Type, Value, Unit);
+        }
     }
 }

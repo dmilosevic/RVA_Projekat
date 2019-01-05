@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace Client.Commands
 {
-    class LoginCommand : ClientCommand
+    class LoginCommand : BaseCommand
     {
         LoginVM viewModel = null;
 

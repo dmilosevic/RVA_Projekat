@@ -14,7 +14,7 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            Console.ReadLine();
+            //Console.ReadLine();
 
             UserServer userServer = new UserServer();
             DataServer dataServer = new DataServer();

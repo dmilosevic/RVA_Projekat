@@ -19,5 +19,10 @@ namespace Common.Model
         {
             Measurements = new List<Measurement>();
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0}_{1}", Id, Name);
+        }
     }
 }

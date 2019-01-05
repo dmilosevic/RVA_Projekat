@@ -19,5 +19,10 @@ namespace Common.Model
             Devices = new List<Device>();
 
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0}_{1} ({2})", Id, Name, Location);
+        }
     }
 }

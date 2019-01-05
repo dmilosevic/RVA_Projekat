@@ -3,11 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ie="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:local="clr-namespace:Client.View"
         mc:Ignorable="d"
         Title="Home" Height="450" Width="800">
     <Grid>
-        <Label x:Name="label" Content="yah it frickin woorks" HorizontalAlignment="Left" Margin="180,156,0,0" FontSize="50" VerticalAlignment="Top" Height="165"/>
+        <Label x:Name="label" Content="Substations" HorizontalAlignment="Left" Margin="102,162,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="lboxSubstations" SelectedItem="{Binding Path=selectedSubstation, Mode=TwoWay}" ItemsSource="{Binding Path=Substations}" HorizontalAlignment="Left" Height="176" Margin="50,188,0,0" VerticalAlignment="Top" Width="181">
+            <ie:Interaction.Triggers>
+                <ie:EventTrigger EventName="SelectionChanged">
+                    <ie:InvokeCommandAction Command="{Binding selectedSubstationChangedCmd}"  CommandParameter="{Binding ElementName=lboxSubstations, Path=SelectedItem}"/>
+                </ie:EventTrigger>
+            </ie:Interaction.Triggers>
+        </ListBox>
+
+        <Label x:Name="label_Copy" Content="Devices"  HorizontalAlignment="Left" Margin="367,162,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="lboxDevices" ItemsSource="{Binding Path=Devices}" SelectedItem="{Binding Path=selectedDevice, Mode=TwoWay}" HorizontalAlignment="Left" Height="176" Margin="299,188,0,0" VerticalAlignment="Top" Width="192">
+            <ie:Interaction.Triggers>
+                <ie:EventTrigger EventName="SelectionChanged">
+                    <ie:InvokeCommandAction Command="{Binding selectedDeviceChangedCmd}"  CommandParameter="{Binding ElementName=lboxDevices, Path=SelectedItem}"/>
+                </ie:EventTrigger>
+            </ie:Interaction.Triggers>
+        </ListBox>
+
+        <Label x:Name="lboxMeasurements" Content="Measurements" HorizontalAlignment="Left" Margin="618,162,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="listBox_Copy1" ItemsSource="{Binding Path=Measurements}" HorizontalAlignment="Left" Height="176" Margin="562,188,0,0" VerticalAlignment="Top" Width="202"/>
 
     </Grid>
 </Window>

@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Client.Commands
 {
-    public abstract class ClientCommand : ICommand
+    public abstract class BaseCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
