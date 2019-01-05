@@ -63,7 +63,10 @@ namespace Server.Services
             {
                 using (var context = new DataContext())
                 {
+                    //mozda ni ne treba provera za duplikate, jer zadatak zahteva implementaciju komande koja "duplira primarne podatke" stoga ce tad biti podudaranja.
                     var existingStation = context.Substations.FirstOrDefault(x => x.Location == sub.Location && x.Name == sub.Name); //returns null if no match
+
+                    
                     if (existingStation != null)
                     {
                         //substation with this name & location already exists
@@ -76,13 +79,13 @@ namespace Server.Services
             return true;
         }
 
-        public bool DeleteDevice(Device device)
+        public bool DeleteDevice(string id)
         {
             lock (dummyObj)
             {
                 using (var context = new DataContext())
                 {
-                    var dev = context.Devices.FirstOrDefault(x => x.Id == device.Id);
+                    var dev = context.Devices.FirstOrDefault(x => x.Id == id);
                     if (dev == null)
                         return false;
 
@@ -93,13 +96,13 @@ namespace Server.Services
             return true;
         }
 
-        public bool DeleteMeasurement(Measurement meas)
+        public bool DeleteMeasurement(int id)
         {
             lock (dummyObj)
             {
                 using (var context = new DataContext())
                 {
-                    var measurement = context.Measurements.FirstOrDefault(x => x.Id == meas.Id);
+                    var measurement = context.Measurements.FirstOrDefault(x => x.Id == id);
                     if (measurement == null)
                         return false;
 
@@ -110,13 +113,13 @@ namespace Server.Services
             return true;
         }
 
-        public bool DeleteSubstation(Substation sub)
+        public bool DeleteSubstation(int id)
         {
             lock (dummyObj)
             {
                 using (var context = new DataContext())
                 {
-                    var station = context.Substations.FirstOrDefault(x => x.Id == sub.Id);
+                    var station = context.Substations.FirstOrDefault(x => x.Id == id);
                     if (station == null)
                         return false;
 

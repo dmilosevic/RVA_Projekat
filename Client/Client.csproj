@@ -56,15 +56,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AddSubstation.cs" />
     <Compile Include="Commands\BaseCommand.cs" />
+    <Compile Include="Commands\DeleteSubstation.cs" />
     <Compile Include="Commands\DeviceSelectionChanged.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
+    <Compile Include="Commands\OpenDialogs\AddSubstationDialog.cs" />
+    <Compile Include="Commands\RedoCommand.cs" />
     <Compile Include="Commands\SubstationSelectionChanged.cs" />
+    <Compile Include="Commands\UndoCommand.cs" />
     <Compile Include="Converter\MultiValueConverter.cs" />
     <Compile Include="Proxy\DataProxy.cs" />
     <Compile Include="Proxy\UserProxy.cs" />
+    <Compile Include="ViewModel\AddSubstationVM.cs" />
     <Compile Include="ViewModel\HomeVM.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
+    <Compile Include="View\AddSubstation.xaml.cs">
+      <DependentUpon>AddSubstation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
@@ -83,6 +92,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\AddSubstation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

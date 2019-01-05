@@ -28,6 +28,13 @@
 
         <Label x:Name="lboxMeasurements" Content="Measurements" HorizontalAlignment="Left" Margin="618,162,0,0" VerticalAlignment="Top"/>
         <ListBox x:Name="listBox_Copy1" ItemsSource="{Binding Path=Measurements}" HorizontalAlignment="Left" Height="176" Margin="562,188,0,0" VerticalAlignment="Top" Width="202"/>
+        
+        
+        <!--COMMAND BUTTONS-->
+        <Button x:Name="btnAddSubstation" Command="{Binding openAddSubstationDialogCmd}" Content="Add Substation" HorizontalAlignment="Left" Margin="50,31,0,0" VerticalAlignment="Top" Width="97"/>
+        <Button x:Name="btnDeleteSubstation" Command="{Binding deleteSubstationCmd}" CommandParameter="{Binding ElementName=lboxSubstations, Path=SelectedItem}" Content="Delete Substation" HorizontalAlignment="Left" Margin="178,31,0,0" VerticalAlignment="Top" Width="106"/>
+        <Button x:Name="btnUndo" Content="Undo" Command="{Binding undoCmd}" HorizontalAlignment="Left" Margin="367,31,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnRedo" Content="Redo" Command="{Binding redoCmd}" HorizontalAlignment="Left" Margin="465,31,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>

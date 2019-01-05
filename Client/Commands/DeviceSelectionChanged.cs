@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Client.Commands
 {
-    class DeviceSelectionChanged : BaseCommand
+    public class DeviceSelectionChanged : BaseCommand
     {
         HomeVM viewModel = null;
 

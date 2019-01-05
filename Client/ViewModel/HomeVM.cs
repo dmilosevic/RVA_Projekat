@@ -1,4 +1,5 @@
 ﻿using Client.Commands;
+using Client.Commands.OpenDialogs;
 using Client.Proxy;
 using Common.Model;
 using System;
@@ -11,12 +12,26 @@ using System.Threading.Tasks;
 
 namespace Client.ViewModel
 {
-    class HomeVM : INotifyPropertyChanged
+    public class HomeVM : INotifyPropertyChanged
     {
         List<Device> devices = null;
         List<Substation> substations = null;
         List<Measurement> measurements = null;
 
+
+        //PROPERTIES
+        #region Undo/Redo properties
+        public List<BaseCommand> UndoHistory { get; set; }
+        public List<BaseCommand> RedoHistory { get; set; }
+
+        public List<Substation> SubstationsUndo { get; set; }
+        public List<Device> DevicesUndo { get; set; }
+        public List<Measurement> MeasurementsUndo { get; set; }
+
+        public List<Substation> SubstationsRedo { get; set; }
+        public List<Device> DevicesRedo { get; set; }
+        public List<Measurement> MeasurementsRedo { get; set; }
+        #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
         public User CurrentUser { get; }
@@ -30,8 +45,7 @@ namespace Client.ViewModel
             set
             {
                 substations = value;
-                selectedDevice = null;
-                //PropertyChanged(this, new PropertyChangedEventArgs(nameof(Substations)));
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(Substations)));
             }
         }
 
@@ -67,6 +81,10 @@ namespace Client.ViewModel
         //commands
         public SubstationSelectionChanged selectedSubstationChangedCmd { get; set; }
         public DeviceSelectionChanged  selectedDeviceChangedCmd { get; set; }
+        public AddSubstationDialog openAddSubstationDialogCmd { get; set; }
+        public DeleteSubstation deleteSubstationCmd { get; set; }
+        public RedoCommand redoCmd { get; set; }
+        public UndoCommand undoCmd { get; set; }
 
         public HomeVM(User loggedInUser)
         {
@@ -82,6 +100,24 @@ namespace Client.ViewModel
         {
             selectedSubstationChangedCmd = new SubstationSelectionChanged(this);
             selectedDeviceChangedCmd = new DeviceSelectionChanged(this);
+            openAddSubstationDialogCmd = new AddSubstationDialog(this);
+            deleteSubstationCmd = new DeleteSubstation(this);
+            redoCmd = new RedoCommand(this);
+            undoCmd = new UndoCommand(this);
+
+            #region initialize Undo/Redo data holders
+            RedoHistory = new List<BaseCommand>();
+            UndoHistory = new List<BaseCommand>();
+
+            SubstationsUndo = new List<Substation>();
+            DevicesUndo = new List<Device>();
+            MeasurementsUndo = new List<Measurement>();
+
+            SubstationsRedo = new List<Substation>();
+            DevicesRedo = new List<Device>();
+            MeasurementsRedo = new List<Measurement>();
+            #endregion
+
 
             CurrentUser = UserProxy.Instance.Proxy.Login("admin", "admin");
             

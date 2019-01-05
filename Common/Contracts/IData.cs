@@ -64,13 +64,13 @@ namespace Common.Contracts
         #region DELETE operations
 
         [OperationContract]
-        bool DeleteSubstation(Substation sub);
+        bool DeleteSubstation(int id);
 
         [OperationContract]
-        bool DeleteDevice(Device device);
+        bool DeleteDevice(string id);
 
         [OperationContract]
-        bool DeleteMeasurement(Measurement meas);
+        bool DeleteMeasurement(int  id);
 
         #endregion
 

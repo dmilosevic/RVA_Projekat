@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Client.Commands
 {
-    class SubstationSelectionChanged : BaseCommand
+    public class SubstationSelectionChanged : BaseCommand
     {
         HomeVM viewModel = null;
 
