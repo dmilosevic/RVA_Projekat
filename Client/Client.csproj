@@ -77,6 +77,15 @@
     <Compile Include="View\AddUser.xaml.cs">
       <DependentUpon>AddUser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DataConflict.xaml.cs">
+      <DependentUpon>DataConflict.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditSubstation.xaml.cs">
+      <DependentUpon>EditSubstation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditUserData.xaml.cs">
+      <DependentUpon>EditUserData.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
@@ -100,6 +109,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DataConflict.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditSubstation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditUserData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -5,13 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client.View"
         mc:Ignorable="d"
-        Title="AddUser" Height="309.852" Width="366.208">
+        Title="AddUser" Height="323.199" Width="379.555">
     <Grid>
-        <Label x:Name="label" Content="Username" HorizontalAlignment="Left" Margin="27,42,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbUsername" HorizontalAlignment="Left" Height="23" Margin="110,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190"/>
-        <Label x:Name="label_Copy" Content="Password" HorizontalAlignment="Left" Margin="27,91,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="23" Margin="110,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190"/>
-        <Button x:Name="btnAddUser" Content="Add" HorizontalAlignment="Left" Margin="140,197,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label x:Name="label" Content="Username" HorizontalAlignment="Left" Margin="27,19,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbUsername" HorizontalAlignment="Left" Height="23" Margin="110,22,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190"/>
+        <Label x:Name="label_Copy" Content="Password" HorizontalAlignment="Left" Margin="27,68,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="23" Margin="110,71,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190"/>
+        <Button x:Name="btnAddUser" Content="Add" HorizontalAlignment="Left" Margin="287,261,0,0" VerticalAlignment="Top" Width="75"/>
+        <CheckBox x:Name="cbAdmin" Content="Administrator" HorizontalAlignment="Left" Margin="140,209,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_Copy1" Content="First name" HorizontalAlignment="Left" Margin="27,118,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbFirstName" HorizontalAlignment="Left" Height="23" Margin="110,121,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190"/>
+        <Label x:Name="label_Copy2" Content="Last name" HorizontalAlignment="Left" Margin="27,167,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbLastName" HorizontalAlignment="Left" Height="23" Margin="110,170,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190"/>
 
     </Grid>
 </Window>

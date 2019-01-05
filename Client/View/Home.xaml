@@ -6,10 +6,10 @@
         xmlns:ie="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:local="clr-namespace:Client.View"
         mc:Ignorable="d"
-        Title="Home" Height="450" Width="800">
-    <Grid>
-        <Label x:Name="label" Content="Substations" HorizontalAlignment="Left" Margin="102,162,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="lboxSubstations" SelectedItem="{Binding Path=selectedSubstation, Mode=TwoWay}" ItemsSource="{Binding Path=Substations}" HorizontalAlignment="Left" Height="176" Margin="50,188,0,0" VerticalAlignment="Top" Width="181">
+        Title="Home" Height="524.364" Width="970.657">
+    <Grid RenderTransformOrigin="0.41,0.752">
+        <Label x:Name="label" Content="Substations" HorizontalAlignment="Left" Margin="110,463,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="lboxSubstations" SelectedItem="{Binding Path=selectedSubstation, Mode=TwoWay}" ItemsSource="{Binding Path=Substations}" HorizontalAlignment="Left" Height="176" Margin="50,287,0,0" VerticalAlignment="Top" Width="203">
             <ie:Interaction.Triggers>
                 <ie:EventTrigger EventName="SelectionChanged">
                     <ie:InvokeCommandAction Command="{Binding selectedSubstationChangedCmd}"  CommandParameter="{Binding ElementName=lboxSubstations, Path=SelectedItem}"/>
@@ -17,8 +17,8 @@
             </ie:Interaction.Triggers>
         </ListBox>
 
-        <Label x:Name="label_Copy" Content="Devices"  HorizontalAlignment="Left" Margin="367,162,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="lboxDevices" ItemsSource="{Binding Path=Devices}" SelectedItem="{Binding Path=selectedDevice, Mode=TwoWay}" HorizontalAlignment="Left" Height="176" Margin="299,188,0,0" VerticalAlignment="Top" Width="192">
+        <Label x:Name="label_Copy" Content="Devices"  HorizontalAlignment="Left" Margin="367,463,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="lboxDevices" ItemsSource="{Binding Path=Devices}" SelectedItem="{Binding Path=selectedDevice, Mode=TwoWay}" HorizontalAlignment="Left" Height="176" Margin="300,287,0,0" VerticalAlignment="Top" Width="192">
             <ie:Interaction.Triggers>
                 <ie:EventTrigger EventName="SelectionChanged">
                     <ie:InvokeCommandAction Command="{Binding selectedDeviceChangedCmd}"  CommandParameter="{Binding ElementName=lboxDevices, Path=SelectedItem}"/>
@@ -26,17 +26,23 @@
             </ie:Interaction.Triggers>
         </ListBox>
 
-        <Label x:Name="lboxMeasurements" Content="Measurements" HorizontalAlignment="Left" Margin="618,162,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="listBox_Copy1" ItemsSource="{Binding Path=Measurements}" HorizontalAlignment="Left" Height="176" Margin="562,188,0,0" VerticalAlignment="Top" Width="202"/>
-        
-        
+        <Label x:Name="lboxMeasurements" Content="Measurements" HorizontalAlignment="Left" Margin="623,463,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="listBox_Copy1" ItemsSource="{Binding Path=Measurements}" HorizontalAlignment="Left" Height="176" Margin="567,287,0,0" VerticalAlignment="Top" Width="202"/>
+
+
         <!--COMMAND BUTTONS-->
         <Button x:Name="btnAddSubstation" Command="{Binding openAddSubstationDialogCmd}" Content="Add Substation" HorizontalAlignment="Left" Margin="50,31,0,0" VerticalAlignment="Top" Width="97"/>
-        <Button x:Name="btnDeleteSubstation" Command="{Binding deleteSubstationCmd}" CommandParameter="{Binding ElementName=lboxSubstations, Path=SelectedItem}" Content="Delete Substation" HorizontalAlignment="Left" Margin="178,31,0,0" VerticalAlignment="Top" Width="106"/>
-        <Button x:Name="btnUndo" Content="Undo" Command="{Binding undoCmd}" HorizontalAlignment="Left" Margin="367,31,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btnRedo" Content="Redo" Command="{Binding redoCmd}" HorizontalAlignment="Left" Margin="465,31,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btnAddUser" Content="Add new user" Visibility="{Binding Path=visibleIfAdmin}" HorizontalAlignment="Left" Margin="596,31,0,0" VerticalAlignment="Top" Width="86"/>
-        <Button x:Name="btnSignOut" Content="Sign out" HorizontalAlignment="Left" Margin="707,387,0,0" VerticalAlignment="Top" Width="75" Height="23"/>
+        <Button x:Name="btnDeleteSubstation" Command="{Binding deleteSubstationCmd}" CommandParameter="{Binding ElementName=lboxSubstations, Path=SelectedItem}" Content="Delete Substation" HorizontalAlignment="Left" Margin="166,31,0,0" VerticalAlignment="Top" Width="106"/>
+        <Button x:Name="btnUndo" Content="Undo" Command="{Binding undoCmd}" HorizontalAlignment="Left" Margin="355,31,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnRedo" Content="Redo" Command="{Binding redoCmd}" HorizontalAlignment="Left" Margin="448,31,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnAddUser" Content="Add new user" Visibility="{Binding Path=visibleIfAdmin}" HorizontalAlignment="Left" Margin="693,31,0,0" VerticalAlignment="Top" Width="96"/>
+        <Button x:Name="btnSignOut" Content="Sign out" HorizontalAlignment="Left" Margin="878,461,0,0" VerticalAlignment="Top" Width="75" Height="23"/>
+        <Label x:Name="label1" Content="Filter substations" HorizontalAlignment="Left" Margin="45,192,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.192,0.625"/>
+        <TextBox x:Name="tbFilter" HorizontalAlignment="Left" Height="23" Margin="53,237,0,0" TextWrapping="Wrap" Text="Name xor Location" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnFilter" Content="Filter" HorizontalAlignment="Left" Margin="178,237,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnEditSubstation" Content="Edit Substation" HorizontalAlignment="Left" Margin="50,68,0,0" VerticalAlignment="Top" Width="97"/>
+        <Button x:Name="btnEditUserData" Content="Edit user data" HorizontalAlignment="Left" Margin="583,31,0,0" VerticalAlignment="Top" Width="95"/>
+        <Button x:Name="btnClone" Content="Clone substation" HorizontalAlignment="Left" Margin="166,68,0,0" VerticalAlignment="Top" Width="106"/>
 
     </Grid>
 </Window>
