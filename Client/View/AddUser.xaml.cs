@@ -23,7 +23,7 @@ namespace Client.View
         public AddUser(HomeVM home)
         {
             InitializeComponent();
-            //set context
+            DataContext = new AddUserVM(this, home);
         }
     }
 }

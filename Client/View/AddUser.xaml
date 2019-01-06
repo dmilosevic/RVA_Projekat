@@ -8,15 +8,17 @@
         Title="AddUser" Height="323.199" Width="379.555">
     <Grid>
         <Label x:Name="label" Content="Username" HorizontalAlignment="Left" Margin="27,19,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbUsername" HorizontalAlignment="Left" Height="23" Margin="110,22,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190"/>
+        <TextBox x:Name="tbUsername" HorizontalAlignment="Left" Height="23" Margin="110,22,0,0" TextWrapping="Wrap" Text="{Binding Username, Mode=TwoWay}" VerticalAlignment="Top" Width="190"/>
         <Label x:Name="label_Copy" Content="Password" HorizontalAlignment="Left" Margin="27,68,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="23" Margin="110,71,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190"/>
-        <Button x:Name="btnAddUser" Content="Add" HorizontalAlignment="Left" Margin="287,261,0,0" VerticalAlignment="Top" Width="75"/>
-        <CheckBox x:Name="cbAdmin" Content="Administrator" HorizontalAlignment="Left" Margin="140,209,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="23" Margin="110,71,0,0" TextWrapping="Wrap" Text="{Binding Password, Mode=TwoWay}" VerticalAlignment="Top" Width="190"/>
+        <TextBox x:Name="tbFirstName" HorizontalAlignment="Left" Height="23" Margin="110,121,0,0" TextWrapping="Wrap" Text="{Binding FirstName, Mode=TwoWay}" VerticalAlignment="Top" Width="190"/>
+        <TextBox x:Name="tbLastName" HorizontalAlignment="Left" Height="23" Margin="110,170,0,0" TextWrapping="Wrap" Text="{Binding LastName, Mode=TwoWay}" VerticalAlignment="Top" Width="190"/>
+        <CheckBox x:Name="cbAdmin" IsChecked="{Binding IsAdmin, Mode=TwoWay}" Content="Administrator" HorizontalAlignment="Left" Margin="140,209,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnAddUser" Command="{Binding addUserCmd}" Content="Add" HorizontalAlignment="Left" Margin="287,261,0,0" VerticalAlignment="Top" Width="75"/>
+        
         <Label x:Name="label_Copy1" Content="First name" HorizontalAlignment="Left" Margin="27,118,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbFirstName" HorizontalAlignment="Left" Height="23" Margin="110,121,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190"/>
         <Label x:Name="label_Copy2" Content="Last name" HorizontalAlignment="Left" Margin="27,167,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbLastName" HorizontalAlignment="Left" Height="23" Margin="110,170,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="190"/>
+        
 
     </Grid>
 </Window>

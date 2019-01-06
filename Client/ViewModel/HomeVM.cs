@@ -89,6 +89,7 @@ namespace Client.ViewModel
         public OpenEditSubstation openEditSubstationCmd { get; set; }
         public DeleteSubstation deleteSubstationCmd { get; set; }
         public SignOutCommand signOutCmd { get; set; }
+        public OpenAddUser openAddUserCmd { get; set; }
 
 
         public RedoCommand redoCmd { get; set; }
@@ -98,7 +99,6 @@ namespace Client.ViewModel
         {
             CurrentUser = loggedInUser;
             this.View = view;
-            view.Closed += View_Closed;
 
             selectedSubstationChangedCmd = new SubstationSelectionChanged(this);
             selectedDeviceChangedCmd = new DeviceSelectionChanged(this);
@@ -109,6 +109,7 @@ namespace Client.ViewModel
             openEditSubstationCmd = new OpenEditSubstation(this);
             refreshCommand = new RefreshCommand(this);
             signOutCmd = new SignOutCommand(this);
+            openAddUserCmd = new OpenAddUser(this);
 
             #region initialize Undo/Redo data holders
             RedoHistory = new List<BaseCommand>();
@@ -128,11 +129,6 @@ namespace Client.ViewModel
             visibleIfAdmin = CurrentUser.isAdmin ? "Visible" : "Hidden"; // show/hide GUI elements based on priviledge
 
             RefreshData();
-        }
-
-        private void View_Closed(object sender, EventArgs e)
-        {
-            //signOutCmd.Execute(null);
         }
 
         /// <summary>

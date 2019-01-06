@@ -58,6 +58,7 @@
     </ApplicationDefinition>
     <Compile Include="ClientCallback.cs" />
     <Compile Include="Commands\AddSubstation.cs" />
+    <Compile Include="Commands\AddUserCmd.cs" />
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\DeleteSubstation.cs" />
     <Compile Include="Commands\DeviceSelectionChanged.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Proxy\DataProxy.cs" />
     <Compile Include="Proxy\UserProxy.cs" />
     <Compile Include="ViewModel\AddSubstationVM.cs" />
+    <Compile Include="ViewModel\AddUserVM.cs" />
     <Compile Include="ViewModel\DataConflictVM.cs" />
     <Compile Include="ViewModel\EditSubstationVM.cs" />
     <Compile Include="ViewModel\HomeVM.cs" />
