@@ -8,12 +8,12 @@
         Title="EditUserData" Height="281.25" Width="334.746">
     <Grid>
         <Label x:Name="label" Content="Username" HorizontalAlignment="Left" Margin="45,24,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbUsername" HorizontalAlignment="Left" Height="23" Margin="161,26,0,0" IsEnabled="False" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbUsername" HorizontalAlignment="Left" Height="23" Margin="161,26,0,0" IsEnabled="False" TextWrapping="Wrap" Text="{Binding Path=Username}" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label_Copy" Content="First name" HorizontalAlignment="Left" Margin="45,73,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbFirstName" HorizontalAlignment="Left" Height="23" Margin="161,75,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbFirstName" HorizontalAlignment="Left" Height="23" Margin="161,75,0,0" TextWrapping="Wrap" Text="{Binding Path=Firstname}" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="label_Copy1" Content="Last name" HorizontalAlignment="Left" Margin="45,118,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbLastName" HorizontalAlignment="Left" Height="23" Margin="161,120,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="187,198,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="tbLastName" HorizontalAlignment="Left" Height="23" Margin="161,120,0,0" TextWrapping="Wrap" Text="{Binding Path=Lastname}" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnSave" Command="{Binding editUserCmd}" Content="Save" HorizontalAlignment="Left" Margin="187,198,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>

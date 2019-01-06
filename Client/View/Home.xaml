@@ -41,8 +41,9 @@
         <TextBox x:Name="tbFilter" HorizontalAlignment="Left" Height="23" Margin="53,237,0,0" TextWrapping="Wrap" Text="Name xor Location" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnFilter" Content="Filter" HorizontalAlignment="Left" Margin="178,237,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="btnEditSubstation" Command="{Binding openEditSubstationCmd}" Content="Edit Substation" HorizontalAlignment="Left" Margin="50,68,0,0" VerticalAlignment="Top" Width="97"/>
-        <Button x:Name="btnEditUserData" Content="Edit user data" HorizontalAlignment="Left" Margin="583,31,0,0" VerticalAlignment="Top" Width="95"/>
+        <Button x:Name="btnEditUserData" Command="{Binding openEditUserDataCmd}" Content="Edit user data" HorizontalAlignment="Left" Margin="583,31,0,0" VerticalAlignment="Top" Width="95"/>
         <Button x:Name="btnClone" Content="Clone substation" HorizontalAlignment="Left" Margin="166,68,0,0" VerticalAlignment="Top" Width="106"/>
+        <Label x:Name="lblCurrentUser" HorizontalContentAlignment="Right" Content="{Binding Path=CurrentUser, Mode=TwoWay}" HorizontalAlignment="Left" Margin="783,414,0,0" VerticalAlignment="Top" Width="170"/>
 
     </Grid>
 </Window>

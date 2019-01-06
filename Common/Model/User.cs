@@ -23,5 +23,10 @@ namespace Common.Model
         }
 
         public User() { }
+
+        public override string ToString()
+        {
+            return FirstName + " " + LastName;
+        }
     }
 }

@@ -20,6 +20,7 @@ namespace Client.ViewModel
         List<Device> devices = null;
         List<Substation> substations = null;
         List<Measurement> measurements = null;
+        User currentuser = null;
         public string visibleIfAdmin { get; set; }
         public Window View { get; set; }
 
@@ -38,7 +39,18 @@ namespace Client.ViewModel
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public User CurrentUser { get; }
+        public User CurrentUser
+        {
+            get
+            {
+                return currentuser;
+            }
+            set
+            {
+                currentuser = value;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(CurrentUser)));
+            }
+        }
 
         public List<Substation> Substations
         {
@@ -90,6 +102,7 @@ namespace Client.ViewModel
         public DeleteSubstation deleteSubstationCmd { get; set; }
         public SignOutCommand signOutCmd { get; set; }
         public OpenAddUser openAddUserCmd { get; set; }
+        public OpenEditUserData openEditUserDataCmd { get; set; }
 
 
         public RedoCommand redoCmd { get; set; }
@@ -110,6 +123,7 @@ namespace Client.ViewModel
             refreshCommand = new RefreshCommand(this);
             signOutCmd = new SignOutCommand(this);
             openAddUserCmd = new OpenAddUser(this);
+            openEditUserDataCmd = new OpenEditUserData(this);
 
             #region initialize Undo/Redo data holders
             RedoHistory = new List<BaseCommand>();

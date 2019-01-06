@@ -64,6 +64,7 @@
     <Compile Include="Commands\DeviceSelectionChanged.cs" />
     <Compile Include="Commands\DiscardChanges.cs" />
     <Compile Include="Commands\EditSubstation.cs" />
+    <Compile Include="Commands\EditUserDataCmd.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\OpenDialogs\OpenAddSubstation.cs" />
     <Compile Include="Commands\OpenDialogs\OpenAddUser.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="ViewModel\AddUserVM.cs" />
     <Compile Include="ViewModel\DataConflictVM.cs" />
     <Compile Include="ViewModel\EditSubstationVM.cs" />
+    <Compile Include="ViewModel\EditUserDataVM.cs" />
     <Compile Include="ViewModel\HomeVM.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
     <Compile Include="View\AddSubstation.xaml.cs">
