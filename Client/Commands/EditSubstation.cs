@@ -42,7 +42,7 @@ namespace Client.Commands
                 Location = parameters[2].ToString(),
             };
 
-            Substation storedSubs = DataProxy.Instance.Proxy.GetSubstationById(viewModel.HomeVM.selectedSubstation.Id);
+            Substation storedSubs = DataProxy.Instance.Proxy.GetSubstationById(viewModel.oldSubstation.Id);
             if(storedSubs == null)
             {
                 MessageBox.Show("This substation was deleted in the meantime.", "Error");
@@ -51,7 +51,7 @@ namespace Client.Commands
                 return;
             }
 
-            if(!storedSubs.Equals(viewModel.HomeVM.selectedSubstation))
+            if(!storedSubs.Equals(viewModel.oldSubstation))
             {
                 //neko je menjao podatke u medjuvremenu -> TAKE ACTION
 

@@ -14,7 +14,7 @@ namespace Common.Contracts
         #region CREATE operations
 
         [OperationContract]
-        bool AddSubstation(Substation sub);
+        bool AddSubstation(Substation sub/*, string user*/);
 
         [OperationContract]
         bool AddDevice(Device device);

@@ -42,7 +42,7 @@ namespace Client.Commands
 
             Substation newSub = new Substation() { Name = name, Location = location };
 
-            bool success = DataProxy.Instance.Proxy.AddSubstation(newSub);
+            bool success = DataProxy.Instance.Proxy.AddSubstation(newSub/*, viewModel.homeVM.CurrentUser.Username*/);
 
             if(!success)
             {

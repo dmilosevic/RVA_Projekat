@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Common.Contracts
 {
-    [ServiceContract]
+    [ServiceContract(CallbackContract = typeof(IUserCallback), SessionMode = SessionMode.Required)]
     public interface IUser
     {
         [OperationContract]
@@ -20,5 +20,15 @@ namespace Common.Contracts
         [OperationContract]
         bool UpdateUserInfo(User user);
 
+    }
+
+
+    /// <summary>
+    /// Provides server with option to notify clients about data changes made by other users
+    /// </summary>
+    public interface IUserCallback
+    {
+        [OperationContract]
+        void NotifyClientAboutChanges();
     }
 }

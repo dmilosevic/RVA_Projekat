@@ -1,4 +1,5 @@
 ﻿using Client.Commands;
+using Common.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,8 @@ namespace Client.ViewModel
         public EditSubstation editSubstationCmd { get; set; }
         public HomeVM HomeVM { get; set; }
         public Window EditView { get; set; }
+
+        public Substation oldSubstation { get; set; }
 
         #region Properties
         public int Id
@@ -69,6 +72,14 @@ namespace Client.ViewModel
             Id = HomeVM.selectedSubstation.Id;
             Name = HomeVM.selectedSubstation.Name;
             Location = HomeVM.selectedSubstation.Location;
+
+            oldSubstation = new Substation()
+            {
+                Id = this.Id,
+                Name = this.Name,
+                Location = this.Location,
+            };
+                
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

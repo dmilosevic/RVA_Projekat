@@ -14,7 +14,8 @@ namespace Client.Proxy
     class UserProxy
     {
         static UserProxy instance = null;
-
+        ClientCallback callbackInstance = new ClientCallback();
+        
         public IUser Proxy { get; set; }
 
         public static UserProxy Instance
@@ -24,14 +25,15 @@ namespace Client.Proxy
                 if (instance == null)
                     instance = new UserProxy();
 
-                return instance;
+                return instance;                
             }
         }
 
         private UserProxy()
         {
             NetTcpBinding binding = new NetTcpBinding();
-            ChannelFactory<IUser> factory = new ChannelFactory<IUser>(binding, new EndpointAddress("net.tcp://localhost:40000/UserService"));
+            
+            DuplexChannelFactory<IUser> factory = new DuplexChannelFactory<IUser>(callbackInstance, binding, new EndpointAddress("net.tcp://localhost:40000/UserService"));
             Proxy = factory.CreateChannel();
         }
 

@@ -4,14 +4,23 @@ using Server.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Server.Services
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerSession, ConcurrencyMode = ConcurrencyMode.Multiple)]
     class UserService : IUser
     {
         static readonly object dummyObj = new object();
+        IUserCallback callback = null;
+
+        public UserService()
+        {
+            
+        }
+
 
         public bool AddUser(User newUser)
         {
@@ -39,6 +48,15 @@ namespace Server.Services
                 using (var context = new DataContext())
                 {
                     var user = context.Users.FirstOrDefault(u => u.Username == username && u.Password == password); //returns null if no match
+
+                    if (user != null)
+                    {
+                        callback = OperationContext.Current.GetCallbackChannel<IUserCallback>();
+                        // callback.NotifyClientAboutChanges();
+                        CallbackData.Users.Add(user.Username, callback);
+                        CallbackData.Callbacks.Add(callback);
+                    }
+
                     return user;
                 }
             }

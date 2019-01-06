@@ -4,11 +4,13 @@ using Server.Context;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Server.Services
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, ConcurrencyMode = ConcurrencyMode.Reentrant)]
     class DataService : IData
     {
         static readonly object dummyObj = new object();
@@ -57,7 +59,7 @@ namespace Server.Services
             return true;
         }
 
-        public bool AddSubstation(Substation sub)
+        public bool AddSubstation(Substation sub/*, string user*/)
         {
             lock (dummyObj)
             {
@@ -74,9 +76,27 @@ namespace Server.Services
                     }
                     context.Substations.Add(sub);
                     context.SaveChanges();
+                    Task.Factory.StartNew(() =>
+                    {
+                        NotifyUsersAboutChange();
+                    });
                 }
             }
             return true;
+        }
+
+        private void NotifyUsersAboutChange(/*string currentUser*/)
+        {
+            //foreach(KeyValuePair<string, IUserCallback> pair in CallbackData.Users)
+            //{
+            //    if (pair.Key != currentUser)
+            //        pair.Value.NotifyClientAboutChanges();
+            //}
+
+            foreach(var cb in CallbackData.Callbacks)
+            {
+                cb.NotifyClientAboutChanges();
+            }
         }
 
         public bool DeleteDevice(string id)
@@ -143,6 +163,10 @@ namespace Server.Services
 
                     context.Substations.Remove(station);
                     context.SaveChanges();
+                    Task.Factory.StartNew(() =>
+                    {
+                        NotifyUsersAboutChange();
+                    });
                 }
             }
             return true;
@@ -252,6 +276,10 @@ namespace Server.Services
                     subFromDB.Name = sub.Name;
 
                     context.SaveChanges();
+                    Task.Factory.StartNew(() =>
+                    {
+                        NotifyUsersAboutChange();
+                    });
                 }
             }
             return true;

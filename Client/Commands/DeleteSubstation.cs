@@ -58,7 +58,7 @@ namespace Client.Commands
                 return;
 
             Substation subs = listSubs[listSubs.Count - 1];
-            DataProxy.Instance.Proxy.AddSubstation(subs);
+            DataProxy.Instance.Proxy.AddSubstation(subs/*, viewModel.CurrentUser.Username*/);
             viewModel.RefreshData();
 
             viewModel.SubstationsUndo.RemoveAt(viewModel.SubstationsUndo.Count - 1);

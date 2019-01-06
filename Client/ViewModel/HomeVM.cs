@@ -14,6 +14,8 @@ namespace Client.ViewModel
 {
     public class HomeVM : INotifyPropertyChanged
     {
+        public static RefreshCommand refreshCommand { get; set; }
+
         List<Device> devices = null;
         List<Substation> substations = null;
         List<Measurement> measurements = null;
@@ -84,13 +86,39 @@ namespace Client.ViewModel
         public OpenAddSubstation openAddSubstationDialogCmd { get; set; }
         public OpenEditSubstation openEditSubstationCmd { get; set; }
         public DeleteSubstation deleteSubstationCmd { get; set; }
-
+        
         public RedoCommand redoCmd { get; set; }
         public UndoCommand undoCmd { get; set; }
 
         public HomeVM(User loggedInUser)
         {
             CurrentUser = loggedInUser;
+
+            selectedSubstationChangedCmd = new SubstationSelectionChanged(this);
+            selectedDeviceChangedCmd = new DeviceSelectionChanged(this);
+            openAddSubstationDialogCmd = new OpenAddSubstation(this);
+            deleteSubstationCmd = new DeleteSubstation(this);
+            redoCmd = new RedoCommand(this);
+            undoCmd = new UndoCommand(this);
+            openEditSubstationCmd = new OpenEditSubstation(this);
+            refreshCommand = new RefreshCommand(this);
+
+            #region initialize Undo/Redo data holders
+            RedoHistory = new List<BaseCommand>();
+            UndoHistory = new List<BaseCommand>();
+
+            SubstationsUndo = new List<Substation>();
+            DevicesUndo = new List<Device>();
+            MeasurementsUndo = new List<Measurement>();
+
+            SubstationsRedo = new List<Substation>();
+            DevicesRedo = new List<Device>();
+            MeasurementsRedo = new List<Measurement>();
+            #endregion
+
+
+            //CurrentUser = UserProxy.Instance.Proxy.Login("admin", "admin");
+            visibleIfAdmin = CurrentUser.isAdmin ? "Visible" : "Hidden"; // show/hide GUI elements based on priviledge
 
             RefreshData();
         }

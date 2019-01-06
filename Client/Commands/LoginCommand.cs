@@ -51,6 +51,7 @@ namespace Client.Commands
             else
             {
                 Home homeView = new Home(user);
+                
                 viewModel.view.Close();
                 homeView.ShowDialog();
             }
