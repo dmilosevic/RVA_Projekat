@@ -31,7 +31,7 @@ namespace Client.View
         public Home(User loggedInUser)
         {
             InitializeComponent();
-            DataContext = new HomeVM(loggedInUser);
+            DataContext = new HomeVM(loggedInUser, this);
         }
     }
 }

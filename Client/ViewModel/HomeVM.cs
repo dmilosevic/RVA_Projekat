@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Client.ViewModel
 {
@@ -20,6 +21,7 @@ namespace Client.ViewModel
         List<Substation> substations = null;
         List<Measurement> measurements = null;
         public string visibleIfAdmin { get; set; }
+        public Window View { get; set; }
 
         //PROPERTIES
         #region Undo/Redo properties
@@ -86,13 +88,17 @@ namespace Client.ViewModel
         public OpenAddSubstation openAddSubstationDialogCmd { get; set; }
         public OpenEditSubstation openEditSubstationCmd { get; set; }
         public DeleteSubstation deleteSubstationCmd { get; set; }
-        
+        public SignOutCommand signOutCmd { get; set; }
+
+
         public RedoCommand redoCmd { get; set; }
         public UndoCommand undoCmd { get; set; }
 
-        public HomeVM(User loggedInUser)
+        public HomeVM(User loggedInUser, Window view)
         {
             CurrentUser = loggedInUser;
+            this.View = view;
+            view.Closed += View_Closed;
 
             selectedSubstationChangedCmd = new SubstationSelectionChanged(this);
             selectedDeviceChangedCmd = new DeviceSelectionChanged(this);
@@ -102,6 +108,7 @@ namespace Client.ViewModel
             undoCmd = new UndoCommand(this);
             openEditSubstationCmd = new OpenEditSubstation(this);
             refreshCommand = new RefreshCommand(this);
+            signOutCmd = new SignOutCommand(this);
 
             #region initialize Undo/Redo data holders
             RedoHistory = new List<BaseCommand>();
@@ -121,6 +128,11 @@ namespace Client.ViewModel
             visibleIfAdmin = CurrentUser.isAdmin ? "Visible" : "Hidden"; // show/hide GUI elements based on priviledge
 
             RefreshData();
+        }
+
+        private void View_Closed(object sender, EventArgs e)
+        {
+            //signOutCmd.Execute(null);
         }
 
         /// <summary>

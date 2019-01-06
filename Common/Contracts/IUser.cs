@@ -20,6 +20,9 @@ namespace Common.Contracts
         [OperationContract]
         bool UpdateUserInfo(User user);
 
+        [OperationContract]
+        bool SignOut(string username);
+
     }
 
 

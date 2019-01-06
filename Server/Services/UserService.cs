@@ -7,6 +7,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Server.Services
 {
@@ -20,7 +21,6 @@ namespace Server.Services
         {
             
         }
-
 
         public bool AddUser(User newUser)
         {
@@ -51,15 +51,35 @@ namespace Server.Services
 
                     if (user != null)
                     {
-                        callback = OperationContext.Current.GetCallbackChannel<IUserCallback>();
-                        // callback.NotifyClientAboutChanges();
-                        CallbackData.Users.Add(user.Username, callback);
-                        CallbackData.Callbacks.Add(callback);
+                        try
+                        {
+                            callback = OperationContext.Current.GetCallbackChannel<IUserCallback>();
+                            // callback.NotifyClientAboutChanges();
+                            CallbackData.Users.Add(user.Username, callback);
+                            CallbackData.Callbacks.Add(callback);
+                        }
+                        catch(Exception)
+                        {
+                            Console.WriteLine("User {0} trying to login twice", user.Username);
+                            return null;
+                        }
+                        
                     }
 
                     return user;
                 }
             }
+        }
+
+        public bool SignOut(string username)
+        {
+            if (CallbackData.Users.ContainsKey(username))
+            {
+                CallbackData.Users.Remove(username);
+                return true;
+            }
+            else
+                return false;           
         }
 
         public bool UpdateUserInfo(User user)

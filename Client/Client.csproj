@@ -72,6 +72,7 @@
     <Compile Include="Commands\OverrideChanges.cs" />
     <Compile Include="Commands\RedoCommand.cs" />
     <Compile Include="Commands\RefreshCommand.cs" />
+    <Compile Include="Commands\SignOutCommand.cs" />
     <Compile Include="Commands\SubstationSelectionChanged.cs" />
     <Compile Include="Commands\UndoCommand.cs" />
     <Compile Include="Converter\MultiValueConverter.cs" />

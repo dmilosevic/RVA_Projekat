@@ -87,16 +87,20 @@ namespace Server.Services
 
         private void NotifyUsersAboutChange(/*string currentUser*/)
         {
-            //foreach(KeyValuePair<string, IUserCallback> pair in CallbackData.Users)
-            //{
-            //    if (pair.Key != currentUser)
-            //        pair.Value.NotifyClientAboutChanges();
-            //}
-
-            foreach(var cb in CallbackData.Callbacks)
+            foreach (KeyValuePair<string, IUserCallback> pair in CallbackData.Users)
             {
-                cb.NotifyClientAboutChanges();
+                try
+                {
+                    //if (pair.Key != currentUser)
+                    pair.Value.NotifyClientAboutChanges();
+                }
+                catch (Exception) { }                
             }
+
+            //foreach(var cb in CallbackData.Callbacks)
+            //{
+            //    cb.NotifyClientAboutChanges();
+            //}
         }
 
         public bool DeleteDevice(string id)

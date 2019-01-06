@@ -36,7 +36,7 @@
         <Button x:Name="btnUndo" Content="Undo" Command="{Binding undoCmd}" HorizontalAlignment="Left" Margin="355,31,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="btnRedo" Content="Redo" Command="{Binding redoCmd}" HorizontalAlignment="Left" Margin="448,31,0,0" VerticalAlignment="Top" Width="75"/>
         <Button x:Name="btnAddUser" Content="Add new user" Visibility="{Binding Path=visibleIfAdmin}" HorizontalAlignment="Left" Margin="693,31,0,0" VerticalAlignment="Top" Width="96"/>
-        <Button x:Name="btnSignOut" Content="Sign out" HorizontalAlignment="Left" Margin="878,461,0,0" VerticalAlignment="Top" Width="75" Height="23"/>
+        <Button x:Name="btnSignOut" Command="{Binding signOutCmd}" Content="Sign out" HorizontalAlignment="Left" Margin="878,461,0,0" VerticalAlignment="Top" Width="75" Height="23"/>
         <Label x:Name="label1" Content="Filter substations" HorizontalAlignment="Left" Margin="45,192,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.192,0.625"/>
         <TextBox x:Name="tbFilter" HorizontalAlignment="Left" Height="23" Margin="53,237,0,0" TextWrapping="Wrap" Text="Name xor Location" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="btnFilter" Content="Filter" HorizontalAlignment="Left" Margin="178,237,0,0" VerticalAlignment="Top" Width="75"/>
