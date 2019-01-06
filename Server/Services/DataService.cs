@@ -185,6 +185,18 @@ namespace Server.Services
             }
         }
 
+        public Substation GetSubstationById(int id)
+        {
+            lock (dummyObj)
+            {
+                using (var context = new DataContext())
+                {
+                    var substation = context.Substations.FirstOrDefault(x => x.Id == id);
+                    return substation;
+                }
+            }
+        }
+
         public bool UpdateDevice(Device device)
         {
             lock (dummyObj)

@@ -82,7 +82,9 @@ namespace Client.ViewModel
         public SubstationSelectionChanged selectedSubstationChangedCmd { get; set; }
         public DeviceSelectionChanged  selectedDeviceChangedCmd { get; set; }
         public OpenAddSubstation openAddSubstationDialogCmd { get; set; }
+        public OpenEditSubstation openEditSubstationCmd { get; set; }
         public DeleteSubstation deleteSubstationCmd { get; set; }
+
         public RedoCommand redoCmd { get; set; }
         public UndoCommand undoCmd { get; set; }
 
@@ -106,6 +108,7 @@ namespace Client.ViewModel
             deleteSubstationCmd = new DeleteSubstation(this);
             redoCmd = new RedoCommand(this);
             undoCmd = new UndoCommand(this);
+            openEditSubstationCmd = new OpenEditSubstation(this);
 
             #region initialize Undo/Redo data holders
             RedoHistory = new List<BaseCommand>();

@@ -23,7 +23,7 @@ namespace Client.View
         public EditSubstation(HomeVM home)
         {
             InitializeComponent();
-            //set data context
+            DataContext = new EditSubstationVM(this, home);
         }
     }
 }

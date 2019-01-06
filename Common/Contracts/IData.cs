@@ -29,6 +29,14 @@ namespace Common.Contracts
         [OperationContract]
         List<Substation> GetAllSubstations();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Matching substation or null</returns>
+        [OperationContract]        
+        Substation GetSubstationById(int id);
+
         [OperationContract]
         /// <summary>
         /// Gets all devices of a substation

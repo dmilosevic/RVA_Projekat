@@ -12,18 +12,21 @@
     </Window.Resources>
 
     <Grid>
-        <Label x:Name="label_Copy" Content="Name" HorizontalAlignment="Left" Margin="19,25,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="23" Margin="81,28,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-        <Label x:Name="label_Copy1" Content="Location" HorizontalAlignment="Left" Margin="19,70,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbLocation" HorizontalAlignment="Left" Height="23" Margin="81,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="166"/>
-        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="105,163,0,0" VerticalAlignment="Top" Width="75">
+        <Label x:Name="label_Copy" Content="Name" HorizontalAlignment="Left" Margin="32,72,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="23" Margin="81,75,0,0" TextWrapping="Wrap" Text="{Binding Path=Name, Mode=TwoWay}" VerticalAlignment="Top" Width="166"/>
+        <Label x:Name="label_Copy1" Content="Location" HorizontalAlignment="Left" Margin="19,117,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.153,0.516"/>
+        <TextBox x:Name="tbLocation" HorizontalAlignment="Left" Height="23" Margin="81,120,0,0" TextWrapping="Wrap" Text="{Binding Path=Location, Mode=TwoWay}" VerticalAlignment="Top" Width="166"/>
+        <Button x:Name="btnSave" Command="{Binding editSubstationCmd}" Content="Save" HorizontalAlignment="Left" Margin="110,204,0,0" VerticalAlignment="Top" Width="75">
             <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource multiConverter}">
+                    <Binding Path="Text" ElementName="tbId"/>
                     <Binding Path="Text" ElementName="tbName"/>
                     <Binding Path="Text" ElementName="tbLocation"/>
                 </MultiBinding>
             </Button.CommandParameter>
         </Button>
+        <Label x:Name="label" Content="ID" HorizontalAlignment="Left" Margin="52,33,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbId" IsEnabled="False" Text="{Binding Path=Id, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="81,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="166"/>
 
     </Grid>
 </Window>

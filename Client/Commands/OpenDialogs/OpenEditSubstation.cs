@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Client.Commands.OpenDialogs
 {
@@ -13,6 +14,12 @@ namespace Client.Commands.OpenDialogs
 
         public override void Execute(object parameter)
         {
+            if (viewModel.selectedSubstation == null)
+            {
+                MessageBox.Show("Select substation to edit");
+                return;
+            }
+
             View.EditSubstation window = new View.EditSubstation(viewModel);
             window.ShowDialog();
         }

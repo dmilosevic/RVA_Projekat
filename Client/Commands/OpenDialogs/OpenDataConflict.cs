@@ -9,7 +9,7 @@ namespace Client.Commands.OpenDialogs
 {
     public class OpenDataConflict : BaseCommand
     {
-        public HomeVM viewModel = null;
+        public EditSubstationVM viewModel = null;
 
         public override void Execute(object parameter)
         {
@@ -17,7 +17,7 @@ namespace Client.Commands.OpenDialogs
             window.ShowDialog();
         }
 
-        public OpenDataConflict(HomeVM home)
+        public OpenDataConflict(EditSubstationVM home)
         {
             this.viewModel = home;
         }

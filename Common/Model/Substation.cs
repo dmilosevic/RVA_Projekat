@@ -26,5 +26,16 @@ namespace Common.Model
         {
             return string.Format("{0}_{1} ({2})", Id, Name, Location);
         }
+
+        public override bool Equals(object obj)
+        {
+            Substation otherSub = obj as Substation;
+            if (otherSub == null)
+                return false;
+
+            return this.Id       == otherSub.Id     &&
+                   this.Name     == otherSub.Name   &&
+                   this.Location == otherSub.Location;
+        }
     }
 }

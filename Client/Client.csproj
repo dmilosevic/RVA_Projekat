@@ -60,12 +60,15 @@
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\DeleteSubstation.cs" />
     <Compile Include="Commands\DeviceSelectionChanged.cs" />
+    <Compile Include="Commands\DiscardChanges.cs" />
+    <Compile Include="Commands\EditSubstation.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\OpenDialogs\OpenAddSubstation.cs" />
     <Compile Include="Commands\OpenDialogs\OpenAddUser.cs" />
     <Compile Include="Commands\OpenDialogs\OpenDataConflict.cs" />
     <Compile Include="Commands\OpenDialogs\OpenEditSubstation.cs" />
     <Compile Include="Commands\OpenDialogs\OpenEditUserData.cs" />
+    <Compile Include="Commands\OverrideChanges.cs" />
     <Compile Include="Commands\RedoCommand.cs" />
     <Compile Include="Commands\SubstationSelectionChanged.cs" />
     <Compile Include="Commands\UndoCommand.cs" />
@@ -73,6 +76,8 @@
     <Compile Include="Proxy\DataProxy.cs" />
     <Compile Include="Proxy\UserProxy.cs" />
     <Compile Include="ViewModel\AddSubstationVM.cs" />
+    <Compile Include="ViewModel\DataConflictVM.cs" />
+    <Compile Include="ViewModel\EditSubstationVM.cs" />
     <Compile Include="ViewModel\HomeVM.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
     <Compile Include="View\AddSubstation.xaml.cs">

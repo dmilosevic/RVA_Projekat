@@ -20,10 +20,10 @@ namespace Client.View
     /// </summary>
     public partial class DataConflict : Window
     {
-        public DataConflict(HomeVM home)
+        public DataConflict(EditSubstationVM vm)
         {
             InitializeComponent();
-            //set context
+            DataContext = new DataConflictVM(vm, this);
         }
     }
 }
