@@ -16,7 +16,11 @@ namespace Client.Commands
         }
         public override void Execute(object parameter)
         {
+            homeVM.FilterLocation = "";
+            homeVM.FilterName = "";
+
             homeVM.RefreshData();
+            
         }
     }
 }

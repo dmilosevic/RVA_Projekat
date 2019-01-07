@@ -20,6 +20,9 @@ namespace Client.ViewModel
         List<Device> devices = null;
         List<Substation> substations = null;
         List<Measurement> measurements = null;
+        string filterName = null;
+        string filterLocation = null;
+
         User currentuser = null;
         public string visibleIfAdmin { get; set; }
         public Window View { get; set; }
@@ -39,6 +42,8 @@ namespace Client.ViewModel
         #endregion
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        #region Binding Properties
         public User CurrentUser
         {
             get
@@ -68,7 +73,7 @@ namespace Client.ViewModel
         public List<Device> Devices
         {
             get
-            { 
+            {
                 return devices;
             }
             set
@@ -90,6 +95,31 @@ namespace Client.ViewModel
             }
         }
 
+        
+
+        public string FilterName
+        {
+            get { return filterName; }
+            set
+            {
+                filterName = value;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(FilterName)));
+            }
+        }
+
+        public string FilterLocation
+        {
+            get { return filterLocation; }
+            set
+            {
+                filterLocation = value;
+                OnPropertyChanged(new PropertyChangedEventArgs(nameof(FilterLocation)));
+            }
+        }
+
+        #endregion
+
+
         public Substation selectedSubstation { get; set; }
         public Device selectedDevice { get; set; }
 
@@ -104,6 +134,7 @@ namespace Client.ViewModel
         public OpenAddUser openAddUserCmd { get; set; }
         public OpenEditUserData openEditUserDataCmd { get; set; }
         public CloneSubstationCmd cloneSubstationCmd { get; set; }
+        public FilterSubstationsCmd filterSubstationCmd { get; set; }
 
         public RedoCommand redoCmd { get; set; }
         public UndoCommand undoCmd { get; set; }
@@ -112,6 +143,7 @@ namespace Client.ViewModel
         {
             CurrentUser = loggedInUser;
             this.View = view;
+
 
             selectedSubstationChangedCmd = new SubstationSelectionChanged(this);
             selectedDeviceChangedCmd = new DeviceSelectionChanged(this);
@@ -125,6 +157,7 @@ namespace Client.ViewModel
             openAddUserCmd = new OpenAddUser(this);
             openEditUserDataCmd = new OpenEditUserData(this);
             cloneSubstationCmd = new CloneSubstationCmd(this);
+            filterSubstationCmd = new FilterSubstationsCmd(this);
 
 
             #region initialize Undo/Redo data holders
@@ -140,6 +173,8 @@ namespace Client.ViewModel
             MeasurementsRedo = new List<Measurement>();
             #endregion
 
+            FilterName = "";
+            FilterLocation = "";
 
             //CurrentUser = UserProxy.Instance.Proxy.Login("admin", "admin");
             visibleIfAdmin = CurrentUser.isAdmin ? "Visible" : "Hidden"; // show/hide GUI elements based on priviledge
