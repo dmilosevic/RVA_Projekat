@@ -122,6 +122,7 @@ namespace Client.ViewModel
 
         public Substation selectedSubstation { get; set; }
         public Device selectedDevice { get; set; }
+        public Measurement selectedMeasurement { get; set; }
 
 
         //commands
@@ -135,6 +136,10 @@ namespace Client.ViewModel
         public OpenEditUserData openEditUserDataCmd { get; set; }
         public CloneSubstationCmd cloneSubstationCmd { get; set; }
         public FilterSubstationsCmd filterSubstationCmd { get; set; }
+        public OpenAddDevice openAddDeviceCmd { get; set; }
+        public DeleteDeviceCmd deleteDeviceCmd { get; set; }
+        public OpenAddMeasurement openAddMeasurementCmd { get; set; }
+        public DeleteMeasurement deleteMeasurementCmd { get; set; }
 
         public RedoCommand redoCmd { get; set; }
         public UndoCommand undoCmd { get; set; }
@@ -158,7 +163,10 @@ namespace Client.ViewModel
             openEditUserDataCmd = new OpenEditUserData(this);
             cloneSubstationCmd = new CloneSubstationCmd(this);
             filterSubstationCmd = new FilterSubstationsCmd(this);
-
+            openAddDeviceCmd = new OpenAddDevice(this);
+            deleteDeviceCmd = new DeleteDeviceCmd(this);
+            openAddMeasurementCmd = new OpenAddMeasurement(this);
+            deleteMeasurementCmd = new DeleteMeasurement(this);
 
             #region initialize Undo/Redo data holders
             RedoHistory = new List<BaseCommand>();

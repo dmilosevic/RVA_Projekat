@@ -45,7 +45,7 @@ namespace Server.Services
                 {
                     var existingMeasurement = context.Measurements.FirstOrDefault(x => x.Id == meas.Id &&
                             //x.Measurement_Device.Id == meas.Measurement_Device.Id &&
-                            x.DateTime.ToLongTimeString() == meas.DateTime.ToLongTimeString()); //returns null if no match
+                            x.DateTime == meas.DateTime); //returns null if no match
 
                     if (existingMeasurement != null)
                     {
@@ -192,7 +192,7 @@ namespace Server.Services
             {
                 using (var context = new DataContext())
                 {
-                    var devices = context.Devices.Where(x => x.Device_Substation.Id == substation.Id); //it should work xD
+                    var devices = context.Devices.Where(x => x.Device_Substation == substation.Id); //it should work xD
 
                     return devices.ToList();
                 }
@@ -205,7 +205,7 @@ namespace Server.Services
             {
                 using (var context = new DataContext())
                 {
-                    var measurements = context.Measurements.Where(x => x.Measurement_Device.Id == device.Id);
+                    var measurements = context.Measurements.Where(x => x.Measurement_Device == device.Id);
                     return measurements.ToList();
                 }
             }
@@ -285,6 +285,18 @@ namespace Server.Services
                 }
             }
             return true;
+        }
+
+        public List<Device> GetAllDevices()
+        {
+            lock (dummyObj)
+            {
+                using (var context = new DataContext())
+                {
+                    var devices = context.Devices;
+                    return devices.ToList();
+                }
+            }
         }
     }
 }

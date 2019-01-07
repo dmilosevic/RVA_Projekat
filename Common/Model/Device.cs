@@ -11,7 +11,8 @@ namespace Common.Model
         public string Id { get; set; }
         public string Name { get; set; }
 
-        public Substation Device_Substation { get; set; }
+        //public Substation Device_Substation { get; set; }
+        public int Device_Substation { get; set; }
         public List<Measurement> Measurements { get; set; }
 
 

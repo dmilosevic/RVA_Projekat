@@ -45,6 +45,9 @@ namespace Common.Contracts
         /// <returns></returns>
         List<Device> GetDevices(Substation substation);
 
+        [OperationContract]
+        List<Device> GetAllDevices();
+
        
         [OperationContract]
         /// <summary>

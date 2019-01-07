@@ -27,7 +27,7 @@
         </ListBox>
 
         <Label x:Name="lboxMeasurements" Content="Measurements" HorizontalAlignment="Left" Margin="623,463,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="listBox_Copy1" ItemsSource="{Binding Path=Measurements}" HorizontalAlignment="Left" Height="176" Margin="567,287,0,0" VerticalAlignment="Top" Width="202"/>
+        <ListBox x:Name="listBox_Copy1" ItemsSource="{Binding Path=Measurements}" SelectedItem="{Binding Path=selectedMeasurement}" HorizontalAlignment="Left" Height="176" Margin="567,287,0,0" VerticalAlignment="Top" Width="202"/>
 
 
         <!--COMMAND BUTTONS-->
@@ -48,6 +48,10 @@
         <Label x:Name="label2" Content="Name" HorizontalAlignment="Left" Margin="23,228,0,0" VerticalAlignment="Top"/>
         <Label x:Name="label2_Copy" Content="Location" HorizontalAlignment="Left" Margin="10,256,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.476,0.615"/>
         <Button x:Name="button" Command="{Binding refreshCommand}" Content="RST" HorizontalAlignment="Left" Margin="180,193,0,0" VerticalAlignment="Top" Width="26"/>
+        <Button x:Name="button1" Content="Add Device" Command="{Binding openAddDeviceCmd}" HorizontalAlignment="Left" Margin="355,97,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.493,0.591"/>
+        <Button x:Name="button2" Content="Delete device" Command="{Binding deleteDeviceCmd}" HorizontalAlignment="Left" Margin="448,97,0,0" VerticalAlignment="Top" Width="84"/>
+        <Button x:Name="button3" Content="Add Measurement" Command="{Binding openAddMeasurementCmd}" HorizontalAlignment="Left" Margin="593,97,0,0" VerticalAlignment="Top" Width="118"/>
+        <Button x:Name="button4" Content="Delete Measurement" Command="{Binding deleteMeasurementCmd}" HorizontalAlignment="Left" Margin="732,97,0,0" VerticalAlignment="Top" Width="127"/>
 
 
     </Grid>

@@ -15,7 +15,8 @@ namespace Common.Model
 
         public DateTime DateTime { get; set; }
 
-        public Device Measurement_Device { get; set; }
+        //public Device Measurement_Device { get; set; }
+        public string Measurement_Device { get; set; }
 
         public Measurement()
         {

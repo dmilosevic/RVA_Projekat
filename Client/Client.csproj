@@ -57,10 +57,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ClientCallback.cs" />
+    <Compile Include="Commands\AddDevice.cs" />
+    <Compile Include="Commands\AddMeasurement.cs" />
     <Compile Include="Commands\AddSubstation.cs" />
     <Compile Include="Commands\AddUserCmd.cs" />
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\CloneSubstationCmd.cs" />
+    <Compile Include="Commands\DeleteDeviceCmd.cs" />
+    <Compile Include="Commands\DeleteMeasurement.cs" />
     <Compile Include="Commands\DeleteSubstation.cs" />
     <Compile Include="Commands\DeviceSelectionChanged.cs" />
     <Compile Include="Commands\DiscardChanges.cs" />
@@ -68,6 +72,8 @@
     <Compile Include="Commands\EditUserDataCmd.cs" />
     <Compile Include="Commands\FilterSubstationsCmd.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
+    <Compile Include="Commands\OpenDialogs\OpenAddDevice.cs" />
+    <Compile Include="Commands\OpenDialogs\OpenAddMeasurement.cs" />
     <Compile Include="Commands\OpenDialogs\OpenAddSubstation.cs" />
     <Compile Include="Commands\OpenDialogs\OpenAddUser.cs" />
     <Compile Include="Commands\OpenDialogs\OpenDataConflict.cs" />
@@ -82,6 +88,8 @@
     <Compile Include="Converter\MultiValueConverter.cs" />
     <Compile Include="Proxy\DataProxy.cs" />
     <Compile Include="Proxy\UserProxy.cs" />
+    <Compile Include="ViewModel\AddDeviceVM.cs" />
+    <Compile Include="ViewModel\AddMeasurementVM.cs" />
     <Compile Include="ViewModel\AddSubstationVM.cs" />
     <Compile Include="ViewModel\AddUserVM.cs" />
     <Compile Include="ViewModel\DataConflictVM.cs" />
@@ -89,6 +97,12 @@
     <Compile Include="ViewModel\EditUserDataVM.cs" />
     <Compile Include="ViewModel\HomeVM.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
+    <Compile Include="View\AddDevice.xaml.cs">
+      <DependentUpon>AddDevice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddMeasurement.xaml.cs">
+      <DependentUpon>AddMeasurement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddSubstation.xaml.cs">
       <DependentUpon>AddSubstation.xaml</DependentUpon>
     </Compile>
@@ -122,6 +136,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\AddDevice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddMeasurement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AddSubstation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
