@@ -103,7 +103,7 @@ namespace Client.ViewModel
         public SignOutCommand signOutCmd { get; set; }
         public OpenAddUser openAddUserCmd { get; set; }
         public OpenEditUserData openEditUserDataCmd { get; set; }
-
+        public CloneSubstationCmd cloneSubstationCmd { get; set; }
 
         public RedoCommand redoCmd { get; set; }
         public UndoCommand undoCmd { get; set; }
@@ -124,6 +124,8 @@ namespace Client.ViewModel
             signOutCmd = new SignOutCommand(this);
             openAddUserCmd = new OpenAddUser(this);
             openEditUserDataCmd = new OpenEditUserData(this);
+            cloneSubstationCmd = new CloneSubstationCmd(this);
+
 
             #region initialize Undo/Redo data holders
             RedoHistory = new List<BaseCommand>();

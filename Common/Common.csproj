@@ -48,6 +48,7 @@
     <Compile Include="Model\Device.cs" />
     <Compile Include="Model\Measurement.cs" />
     <Compile Include="Model\Substation.cs" />
+    <Compile Include="Model\SubstationPrototype.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

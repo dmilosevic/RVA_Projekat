@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Common.Model
 {
-    public class Substation
+    public class Substation : SubstationPrototype
     {
         public int Id { get; set; }
         public string Location { get; set; }
@@ -36,6 +36,17 @@ namespace Common.Model
             return this.Id       == otherSub.Id     &&
                    this.Name     == otherSub.Name   &&
                    this.Location == otherSub.Location;
+        }
+
+        public override Substation Clone()
+        {
+            Substation clone = new Substation();
+
+            clone.Location = this.Location;
+            clone.Name = this.Name;
+            clone.Devices = this.Devices;
+
+            return clone;
         }
     }
 }

@@ -64,14 +64,12 @@ namespace Server.Services
             lock (dummyObj)
             {
                 using (var context = new DataContext())
-                {
-                    //mozda ni ne treba provera za duplikate, jer zadatak zahteva implementaciju komande koja "duplira primarne podatke" stoga ce tad biti podudaranja.
-                    var existingStation = context.Substations.FirstOrDefault(x => x.Location == sub.Location && x.Name == sub.Name); //returns null if no match
-
+                {                    
+                    var existingStation = context.Substations.FirstOrDefault(x => x.Id == sub.Id);
                     
                     if (existingStation != null)
                     {
-                        //substation with this name & location already exists
+                        //substation with this Id
                         return false;
                     }
                     context.Substations.Add(sub);

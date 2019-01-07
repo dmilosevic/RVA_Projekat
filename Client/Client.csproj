@@ -60,6 +60,7 @@
     <Compile Include="Commands\AddSubstation.cs" />
     <Compile Include="Commands\AddUserCmd.cs" />
     <Compile Include="Commands\BaseCommand.cs" />
+    <Compile Include="Commands\CloneSubstationCmd.cs" />
     <Compile Include="Commands\DeleteSubstation.cs" />
     <Compile Include="Commands\DeviceSelectionChanged.cs" />
     <Compile Include="Commands\DiscardChanges.cs" />
