@@ -190,40 +190,40 @@ namespace Client.ViewModel
             RefreshData();
         }
 
-        /// <summary>
-        /// FOR TESTING PURPOSES, DELETE AFTERWARDS
-        /// </summary>
-        public HomeVM()
-        {
+        ///// <summary>
+        ///// FOR TESTING PURPOSES, DELETE AFTERWARDS
+        ///// </summary>
+        //public HomeVM()
+        //{
             
 
-            selectedSubstationChangedCmd = new SubstationSelectionChanged(this);
-            selectedDeviceChangedCmd = new DeviceSelectionChanged(this);
-            openAddSubstationDialogCmd = new OpenAddSubstation(this);
-            deleteSubstationCmd = new DeleteSubstation(this);
-            redoCmd = new RedoCommand(this);
-            undoCmd = new UndoCommand(this);
-            openEditSubstationCmd = new OpenEditSubstation(this);
+        //    selectedSubstationChangedCmd = new SubstationSelectionChanged(this);
+        //    selectedDeviceChangedCmd = new DeviceSelectionChanged(this);
+        //    openAddSubstationDialogCmd = new OpenAddSubstation(this);
+        //    deleteSubstationCmd = new DeleteSubstation(this);
+        //    redoCmd = new RedoCommand(this);
+        //    undoCmd = new UndoCommand(this);
+        //    openEditSubstationCmd = new OpenEditSubstation(this);
 
-            #region initialize Undo/Redo data holders
-            RedoHistory = new List<BaseCommand>();
-            UndoHistory = new List<BaseCommand>();
+        //    #region initialize Undo/Redo data holders
+        //    RedoHistory = new List<BaseCommand>();
+        //    UndoHistory = new List<BaseCommand>();
 
-            SubstationsUndo = new List<Substation>();
-            DevicesUndo = new List<Device>();
-            MeasurementsUndo = new List<Measurement>();
+        //    SubstationsUndo = new List<Substation>();
+        //    DevicesUndo = new List<Device>();
+        //    MeasurementsUndo = new List<Measurement>();
 
-            SubstationsRedo = new List<Substation>();
-            DevicesRedo = new List<Device>();
-            MeasurementsRedo = new List<Measurement>();
-            #endregion
+        //    SubstationsRedo = new List<Substation>();
+        //    DevicesRedo = new List<Device>();
+        //    MeasurementsRedo = new List<Measurement>();
+        //    #endregion
 
 
-            CurrentUser = UserProxy.Instance.Proxy.Login("admin", "admin");
-            visibleIfAdmin = CurrentUser.isAdmin ? "Visible" : "Hidden"; // show/hide GUI elements based on priviledge
+        //    CurrentUser = UserProxy.Instance.Proxy.Login("admin", "admin");
+        //    visibleIfAdmin = CurrentUser.isAdmin ? "Visible" : "Hidden"; // show/hide GUI elements based on priviledge
 
-            RefreshData();           
-        }
+        //    RefreshData();           
+        //}
 
         public void RefreshData()
         {

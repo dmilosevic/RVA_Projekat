@@ -22,11 +22,11 @@ namespace Client.View
     public partial class Home : Window
     {
 
-        public Home()
-        {
-            InitializeComponent();
-            DataContext = new HomeVM();
-        }
+        //public Home()
+        //{
+        //    InitializeComponent();
+        //    DataContext = new HomeVM();
+        //}
         
         public Home(User loggedInUser)
         {

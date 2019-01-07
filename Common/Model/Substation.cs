@@ -38,6 +38,11 @@ namespace Common.Model
                    this.Location == otherSub.Location;
         }
 
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         public override Substation Clone()
         {
             Substation clone = new Substation();
