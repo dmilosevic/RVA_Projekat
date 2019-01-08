@@ -23,6 +23,8 @@ namespace Server
 {
     class Program
     {
+        public static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         static void Main(string[] args)
         {
             //Console.ReadLine();
@@ -35,6 +37,9 @@ namespace Server
             DataServer dataServer = new DataServer();
             userServer.OpenServer();
             dataServer.OpenServer();
+
+            Log.Info("Servers have been started");
+
             Console.WriteLine("Servers are up and running...\nPress enter to exit");
             //using (var context = new DataContext())
             //{
@@ -51,6 +56,7 @@ namespace Server
 
             userServer.CloseServer();
             dataServer.CloseServer();
+            Log.Info("Servers have been shut down");
         }
 
         static void InitializeData()

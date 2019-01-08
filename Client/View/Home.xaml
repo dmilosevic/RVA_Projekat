@@ -5,54 +5,70 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ie="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:local="clr-namespace:Client.View"
+        xmlns:client="clr-namespace:Client"
         mc:Ignorable="d"
-        Title="Home" Height="524.364" Width="970.657">
-    <Grid RenderTransformOrigin="0.44,0.743" HorizontalAlignment="Right" Width="963">
-        <Label x:Name="label" Content="Substations" HorizontalAlignment="Left" Margin="99,463,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="lboxSubstations" SelectedItem="{Binding Path=selectedSubstation, Mode=TwoWay}" ItemsSource="{Binding Path=Substations}" HorizontalAlignment="Left" Height="176" Margin="10,287,0,0" VerticalAlignment="Top" Width="265">
-            <ie:Interaction.Triggers>
-                <ie:EventTrigger EventName="SelectionChanged">
-                    <ie:InvokeCommandAction Command="{Binding selectedSubstationChangedCmd}"  CommandParameter="{Binding ElementName=lboxSubstations, Path=SelectedItem}"/>
-                </ie:EventTrigger>
-            </ie:Interaction.Triggers>
-        </ListBox>
+        Title="Home" Height="571.023" Width="965.102">
+    <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="533" Margin="0,10,0,0" VerticalAlignment="Top" Width="963">
+        <TabItem Header="Main Page">
+            <Grid RenderTransformOrigin="0.44,0.743" HorizontalAlignment="Right" Width="963" Margin="-10,0,0,-53">
+                <Label x:Name="label" Content="Substations" HorizontalAlignment="Left" Margin="99,463,0,0" VerticalAlignment="Top"/>
+                <ListBox x:Name="lboxSubstations" SelectedItem="{Binding Path=selectedSubstation, Mode=TwoWay}" ItemsSource="{Binding Path=Substations}" HorizontalAlignment="Left" Height="176" Margin="10,287,0,0" VerticalAlignment="Top" Width="265">
+                    <ie:Interaction.Triggers>
+                        <ie:EventTrigger EventName="SelectionChanged">
+                            <ie:InvokeCommandAction Command="{Binding selectedSubstationChangedCmd}"  CommandParameter="{Binding ElementName=lboxSubstations, Path=SelectedItem}"/>
+                        </ie:EventTrigger>
+                    </ie:Interaction.Triggers>
+                </ListBox>
 
-        <Label x:Name="label_Copy" Content="Devices"  HorizontalAlignment="Left" Margin="395,466,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="lboxDevices" ItemsSource="{Binding Path=Devices}" SelectedItem="{Binding Path=selectedDevice, Mode=TwoWay}" HorizontalAlignment="Left" Height="176" Margin="328,290,0,0" VerticalAlignment="Top" Width="192">
-            <ie:Interaction.Triggers>
-                <ie:EventTrigger EventName="SelectionChanged">
-                    <ie:InvokeCommandAction Command="{Binding selectedDeviceChangedCmd}"  CommandParameter="{Binding ElementName=lboxDevices, Path=SelectedItem}"/>
-                </ie:EventTrigger>
-            </ie:Interaction.Triggers>
-        </ListBox>
+                <Label x:Name="label_Copy" Content="Devices"  HorizontalAlignment="Left" Margin="395,466,0,0" VerticalAlignment="Top"/>
+                <ListBox x:Name="lboxDevices" ItemsSource="{Binding Path=Devices}" SelectedItem="{Binding Path=selectedDevice, Mode=TwoWay}" HorizontalAlignment="Left" Height="176" Margin="328,290,0,0" VerticalAlignment="Top" Width="192">
+                    <ie:Interaction.Triggers>
+                        <ie:EventTrigger EventName="SelectionChanged">
+                            <ie:InvokeCommandAction Command="{Binding selectedDeviceChangedCmd}"  CommandParameter="{Binding ElementName=lboxDevices, Path=SelectedItem}"/>
+                        </ie:EventTrigger>
+                    </ie:Interaction.Triggers>
+                </ListBox>
 
-        <Label x:Name="lboxMeasurements" Content="Measurements" HorizontalAlignment="Left" Margin="623,463,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="listBox_Copy1" ItemsSource="{Binding Path=Measurements}" SelectedItem="{Binding Path=selectedMeasurement}" HorizontalAlignment="Left" Height="176" Margin="567,287,0,0" VerticalAlignment="Top" Width="202"/>
-
-
-        <!--COMMAND BUTTONS-->
-        <Button x:Name="btnAddSubstation" Command="{Binding openAddSubstationDialogCmd}" Content="Add Substation" HorizontalAlignment="Left" Margin="50,31,0,0" VerticalAlignment="Top" Width="97"/>
-        <Button x:Name="btnDeleteSubstation" Command="{Binding deleteSubstationCmd}" CommandParameter="{Binding ElementName=lboxSubstations, Path=SelectedItem}" Content="Delete Substation" HorizontalAlignment="Left" Margin="166,31,0,0" VerticalAlignment="Top" Width="106"/>
-        <Button x:Name="btnUndo" Content="Undo" Command="{Binding undoCmd}" HorizontalAlignment="Left" Margin="355,31,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btnRedo" Content="Redo" Command="{Binding redoCmd}" HorizontalAlignment="Left" Margin="448,31,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btnAddUser" Command="{Binding openAddUserCmd}" Content="Add new user" Visibility="{Binding Path=visibleIfAdmin}" HorizontalAlignment="Left" Margin="693,31,0,0" VerticalAlignment="Top" Width="96"/>
-        <Button x:Name="btnSignOut" Command="{Binding signOutCmd}" Content="Sign out" HorizontalAlignment="Left" Margin="878,461,0,0" VerticalAlignment="Top" Width="75" Height="23"/>
-        <Label x:Name="label1" Content="Filter substations" HorizontalAlignment="Left" Margin="80,189,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.192,0.625"/>
-        <TextBox x:Name="tbFilterName" HorizontalAlignment="Left" Height="23" Margin="70,231,0,0" TextWrapping="Wrap" Text="{Binding FilterName, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbFilterLocation" HorizontalAlignment="Left" Height="23" Margin="70,259,0,0" TextWrapping="Wrap" Text="{Binding FilterLocation, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="btnFilter" Command="{Binding filterSubstationCmd}" Content="Filter" HorizontalAlignment="Left" Margin="200,243,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="btnEditSubstation" Command="{Binding openEditSubstationCmd}" Content="Edit Substation" HorizontalAlignment="Left" Margin="50,68,0,0" VerticalAlignment="Top" Width="97"/>
-        <Button x:Name="btnEditUserData" Command="{Binding openEditUserDataCmd}" Content="Edit user data" HorizontalAlignment="Left" Margin="583,31,0,0" VerticalAlignment="Top" Width="95"/>
-        <Button x:Name="btnClone" Command="{Binding cloneSubstationCmd}" Content="Clone Substation" HorizontalAlignment="Left" Margin="166,68,0,0" VerticalAlignment="Top" Width="106"/>
-        <Label x:Name="lblCurrentUser" HorizontalContentAlignment="Right" Content="{Binding Path=CurrentUser, Mode=TwoWay}" HorizontalAlignment="Left" Margin="783,414,0,0" VerticalAlignment="Top" Width="170"/>
-        <Label x:Name="label2" Content="Name" HorizontalAlignment="Left" Margin="23,228,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label2_Copy" Content="Location" HorizontalAlignment="Left" Margin="10,256,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.476,0.615"/>
-        <Button x:Name="button" Command="{Binding refreshCommand}" Content="RST" HorizontalAlignment="Left" Margin="180,193,0,0" VerticalAlignment="Top" Width="26"/>
-        <Button x:Name="button1" Content="Add Device" Command="{Binding openAddDeviceCmd}" HorizontalAlignment="Left" Margin="355,97,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.493,0.591"/>
-        <Button x:Name="button2" Content="Delete device" Command="{Binding deleteDeviceCmd}" HorizontalAlignment="Left" Margin="448,97,0,0" VerticalAlignment="Top" Width="84"/>
-        <Button x:Name="button3" Content="Add Measurement" Command="{Binding openAddMeasurementCmd}" HorizontalAlignment="Left" Margin="593,97,0,0" VerticalAlignment="Top" Width="118"/>
-        <Button x:Name="button4" Content="Delete Measurement" Command="{Binding deleteMeasurementCmd}" HorizontalAlignment="Left" Margin="732,97,0,0" VerticalAlignment="Top" Width="127"/>
+                <Label x:Name="lboxMeasurements" Content="Measurements" HorizontalAlignment="Left" Margin="623,463,0,0" VerticalAlignment="Top"/>
+                <ListBox x:Name="listBox_Copy1" ItemsSource="{Binding Path=Measurements}" SelectedItem="{Binding Path=selectedMeasurement}" HorizontalAlignment="Left" Height="176" Margin="567,287,0,0" VerticalAlignment="Top" Width="202"/>
 
 
-    </Grid>
+                <!--COMMAND BUTTONS-->
+                <Button x:Name="btnAddSubstation" Command="{Binding openAddSubstationDialogCmd}" Content="Add Substation" HorizontalAlignment="Left" Margin="50,31,0,0" VerticalAlignment="Top" Width="97"/>
+                <Button x:Name="btnDeleteSubstation" Command="{Binding deleteSubstationCmd}" CommandParameter="{Binding ElementName=lboxSubstations, Path=SelectedItem}" Content="Delete Substation" HorizontalAlignment="Left" Margin="166,31,0,0" VerticalAlignment="Top" Width="106"/>
+                <Button x:Name="btnUndo" Content="Undo" Command="{Binding undoCmd}" HorizontalAlignment="Left" Margin="355,31,0,0" VerticalAlignment="Top" Width="75"/>
+                <Button x:Name="btnRedo" Content="Redo" Command="{Binding redoCmd}" HorizontalAlignment="Left" Margin="448,31,0,0" VerticalAlignment="Top" Width="75"/>
+                <Button x:Name="btnAddUser" Command="{Binding openAddUserCmd}" Content="Add new user" Visibility="{Binding Path=visibleIfAdmin}" HorizontalAlignment="Left" Margin="693,31,0,0" VerticalAlignment="Top" Width="96"/>
+                <Button x:Name="btnSignOut" Command="{Binding signOutCmd}" Content="Sign out" HorizontalAlignment="Left" Margin="878,461,0,0" VerticalAlignment="Top" Width="75" Height="23"/>
+                <Label x:Name="label1" Content="Filter substations" HorizontalAlignment="Left" Margin="80,189,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.192,0.625"/>
+                <TextBox x:Name="tbFilterName" HorizontalAlignment="Left" Height="23" Margin="70,231,0,0" TextWrapping="Wrap" Text="{Binding FilterName, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="tbFilterLocation" HorizontalAlignment="Left" Height="23" Margin="70,259,0,0" TextWrapping="Wrap" Text="{Binding FilterLocation, Mode=TwoWay}" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="btnFilter" Command="{Binding filterSubstationCmd}" Content="Filter" HorizontalAlignment="Left" Margin="200,243,0,0" VerticalAlignment="Top" Width="75"/>
+                <Button x:Name="btnEditSubstation" Command="{Binding openEditSubstationCmd}" Content="Edit Substation" HorizontalAlignment="Left" Margin="50,68,0,0" VerticalAlignment="Top" Width="97"/>
+                <Button x:Name="btnEditUserData" Command="{Binding openEditUserDataCmd}" Content="Edit user data" HorizontalAlignment="Left" Margin="583,31,0,0" VerticalAlignment="Top" Width="95"/>
+                <Button x:Name="btnClone" Command="{Binding cloneSubstationCmd}" Content="Clone Substation" HorizontalAlignment="Left" Margin="166,68,0,0" VerticalAlignment="Top" Width="106"/>
+                <Label x:Name="lblCurrentUser" HorizontalContentAlignment="Right" Content="{Binding Path=CurrentUser, Mode=TwoWay}" HorizontalAlignment="Left" Margin="783,414,0,0" VerticalAlignment="Top" Width="170"/>
+                <Label x:Name="label2" Content="Name" HorizontalAlignment="Left" Margin="23,228,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="label2_Copy" Content="Location" HorizontalAlignment="Left" Margin="10,256,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.476,0.615"/>
+                <Button x:Name="button" Command="{Binding refreshCommand}" Content="RST" HorizontalAlignment="Left" Margin="180,193,0,0" VerticalAlignment="Top" Width="26"/>
+                <Button x:Name="button1" Content="Add Device" Command="{Binding openAddDeviceCmd}" HorizontalAlignment="Left" Margin="355,97,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.493,0.591"/>
+                <Button x:Name="button2" Content="Delete device" Command="{Binding deleteDeviceCmd}" HorizontalAlignment="Left" Margin="448,97,0,0" VerticalAlignment="Top" Width="84"/>
+                <Button x:Name="button3" Content="Add Measurement" Command="{Binding openAddMeasurementCmd}" HorizontalAlignment="Left" Margin="593,97,0,0" VerticalAlignment="Top" Width="118"/>
+                <Button x:Name="button4" Content="Delete Measurement" Command="{Binding deleteMeasurementCmd}" HorizontalAlignment="Left" Margin="732,97,0,0" VerticalAlignment="Top" Width="127"/>
+
+            </Grid>
+        </TabItem>
+
+        <!--TAB 2-->
+        <TabItem Header="Logs">
+            <DataGrid ItemsSource="{Binding Source={x:Static client:InMemoryAppender.LogData}, Mode=OneWay}" IsReadOnly="True" AutoGenerateColumns="False" Margin="0,0,8,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Timestamp" Binding="{Binding Timestamp}"/>
+                    <DataGridTextColumn Header="Level" Binding="{Binding Level}"/>
+                    <DataGridTextColumn Header="Message" Binding="{Binding Message}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </TabItem>
+
+    </TabControl>
 </Window>

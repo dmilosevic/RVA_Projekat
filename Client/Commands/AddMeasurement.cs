@@ -45,12 +45,12 @@ namespace Client.Commands
 
             if (!success)
             {
-                System.Windows.MessageBox.Show("Measurement could not be added.\nPossible duplicates", "Report");
+                LoginVM.Log.Error($"Tried to add duplicate Measurement. Id=('{newMeas.Id}')");
                 return;
             }
             else
             {
-                System.Windows.MessageBox.Show("Measurement added successfuly", "Report");
+                LoginVM.Log.Info($"Measurement added successfuly. Id=('{newMeas.Id}')");
 
                 viewModel.homeVM.RefreshData();
                 viewModel.view.Close();

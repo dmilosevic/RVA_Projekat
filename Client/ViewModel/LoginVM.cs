@@ -14,13 +14,16 @@ namespace Client.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public static readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
+
         public LoginCommand loginCmd { get; set; }
         public Window view { get;}
 
         public LoginVM(Login loginView)
         {
             this.view = loginView;
-            this.loginCmd = new LoginCommand(this);            
+            this.loginCmd = new LoginCommand(this);
         }
 
         public void OnPropertyChanged(PropertyChangedEventArgs e)

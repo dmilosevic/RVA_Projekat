@@ -32,14 +32,16 @@ namespace Client.Commands
 
             if (success)
             {
-                MessageBox.Show("Substation updated.", "Success");
+                LoginVM.Log.Info("Conflict arrised. Changes Overriden");
+                LoginVM.Log.Info($"Substation updated. Id=('{subs.Id}')");
+
                 conflictVM.view.Close();
                 conflictVM.editSubsVM.EditView.Close();
                 conflictVM.editSubsVM.HomeVM.RefreshData();
             }
             else
             {
-                MessageBox.Show("Substation could not be updated", "Failure");
+                LoginVM.Log.Error($"Substation could not be updated. Id=('{subs.Id}')");
             }
         }
     }

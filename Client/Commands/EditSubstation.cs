@@ -67,13 +67,13 @@ namespace Client.Commands
 
                 if (success)
                 {
-                    MessageBox.Show("Substation updated.", "Success");
+                    LoginVM.Log.Info($"Substation updated. Id = ('{updatedSubs.Id}')");
                     viewModel.EditView.Close();
                     viewModel.HomeVM.RefreshData();
                 }
                 else
                 {
-                    MessageBox.Show("Substation could not be updated", "Failure");
+                    LoginVM.Log.Error($"Substation could not be updated. Id = ('{updatedSubs.Id}')");
                 }
             }
 

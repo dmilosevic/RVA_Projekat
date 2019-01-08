@@ -32,12 +32,14 @@ namespace Server.Services
                     if(existingUser != null)
                     {
                         //user with this name already exists
+                        Program.Log.Error($"Existing user. Username=('{existingUser.Username}')");
                         return false;
                     }
                     context.Users.Add(newUser);
                     context.SaveChanges();                   
                 }
             }
+            Program.Log.Info($"New user added Username=('{newUser.Username}')");
             return true;
         }
 
@@ -54,18 +56,18 @@ namespace Server.Services
                         try
                         {
                             callback = OperationContext.Current.GetCallbackChannel<IUserCallback>();
-                            // callback.NotifyClientAboutChanges();
                             CallbackData.Users.Add(user.Username, callback);
-                            CallbackData.Callbacks.Add(callback);
+                            //CallbackData.Callbacks.Add(callback);
                         }
                         catch(Exception)
                         {
-                            Console.WriteLine("User {0} trying to login twice", user.Username);
+                            Program.Log.Warn($"Already logged in. Username=('{username}')");
                             return null;
                         }
                         
                     }
 
+                    Program.Log.Info($"Successful Login. Username=('{username}')");
                     return user;
                 }
             }
@@ -76,6 +78,7 @@ namespace Server.Services
             if (CallbackData.Users.ContainsKey(username))
             {
                 CallbackData.Users.Remove(username);
+                Program.Log.Info($"User Signed out. Username=('{username}')");
                 return true;
             }
             else
@@ -92,6 +95,7 @@ namespace Server.Services
                     if (userFromDB == null)
                     {
                         //non-existing user
+                        Program.Log.Error($"Non-existing user. Username=('{user.Username}')");
                         return false;
                     }
 
@@ -102,6 +106,7 @@ namespace Server.Services
                     context.SaveChanges();
                 }
             }
+            Program.Log.Error($"Succesfully updated user. Username=('{user.Username}')");
             return true;
         }
     }

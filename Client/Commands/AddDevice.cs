@@ -40,12 +40,12 @@ namespace Client.Commands
 
             if (!success)
             {
-                System.Windows.MessageBox.Show("Device could not be added.\nPossible duplicates", "Report");
+                LoginVM.Log.Error($"Tried to add duplicate Device. Id=('{newDevice.Id}')");
                 return;
             }
             else
             {
-                System.Windows.MessageBox.Show("Device added successfuly", "Report");
+                LoginVM.Log.Info($"Device added successfuly. Id=('{newDevice.Id}')");
 
                 viewModel.homeVM.RefreshData();
                 viewModel.view.Close();

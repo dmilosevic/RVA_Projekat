@@ -20,13 +20,15 @@ namespace Client.Commands
         {
             if(viewModel.UndoHistory.Count <= 0)
             {
-                MessageBox.Show("nema nsita za UNDO");
+                //MessageBox.Show("nema nsita za UNDO");
+                LoginVM.Log.Warn("UNDO commands list is empty");
                 return;
             }
 
             BaseCommand cmd = viewModel.UndoHistory[viewModel.UndoHistory.Count - 1]; //get last item
             cmd.UnExecute();
             viewModel.UndoHistory.Remove(cmd);
+            LoginVM.Log.Info("UNDo command invoked");
             //viewModel.SubstationsUndo.RemoveAt(viewModel.SubstationsUndo.Count - 1);
         }
     }

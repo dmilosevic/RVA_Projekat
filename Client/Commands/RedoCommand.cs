@@ -43,6 +43,8 @@ namespace Client.Commands
             viewModel.SubstationsRedo.RemoveAt(viewModel.SubstationsRedo.Count - 1);
 
             viewModel.RefreshData();
+
+            LoginVM.Log.Info("REDO command invoked");
         }
     }
 }

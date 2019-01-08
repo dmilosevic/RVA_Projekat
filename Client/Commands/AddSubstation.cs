@@ -46,12 +46,12 @@ namespace Client.Commands
 
             if(!success)
             {
-                System.Windows.MessageBox.Show("Substation could not be added.\nPossible duplicates", "Report");
+                LoginVM.Log.Error($"Tried to add duplicate Substation. Id=('{newSub.Id}')");
                 return;
             }
             else
             {
-                System.Windows.MessageBox.Show("Substation added successfuly", "Report");
+                LoginVM.Log.Info($"Substation added successfuly. Id=('{newSub.Id}')");
 
                 //save for undo
                 viewModel.homeVM.UndoHistory.Add(this);
@@ -72,6 +72,8 @@ namespace Client.Commands
             DataProxy.Instance.Proxy.DeleteSubstation(subs.Id);
             viewModel.homeVM.SubstationsUndo.RemoveAt(viewModel.homeVM.SubstationsUndo.Count - 1);
             viewModel.homeVM.RefreshData();
+
+            LoginVM.Log.Info($"UNDO command - Substation deleted. Id=('{subs.Id}')");
 
             viewModel.homeVM.RedoHistory.Add(this);
             viewModel.homeVM.SubstationsRedo.Add(subs);

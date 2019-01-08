@@ -14,10 +14,12 @@ namespace Client.Commands
     class LoginCommand : BaseCommand
     {
         LoginVM viewModel = null;
+        
 
         public LoginCommand(LoginVM vm)
         {
             viewModel = vm;
+            
         }
 
         public override void Execute(object parameter)
@@ -46,15 +48,20 @@ namespace Client.Commands
             if(user == null)
             {
                 MessageBox.Show("Invalid credentials", "Nope");
+                LoginVM.Log.Error("Invalid credentials");
                 return;
             }
             else
             {
+                LoginVM.Log.Info($"User logged in. Username='{user.Username}'");
                 Home homeView = new Home(user);
                 
                 viewModel.view.Close();
                 homeView.ShowDialog();
+                
             }
+
+            //var x = InMemoryAppender.LogData;
         }
     }
 }

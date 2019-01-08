@@ -16,6 +16,8 @@ namespace Client.ViewModel
     public class HomeVM : INotifyPropertyChanged
     {
         public static RefreshCommand refreshCommand { get; set; }
+        
+        
 
         List<Device> devices = null;
         List<Substation> substations = null;
@@ -146,9 +148,11 @@ namespace Client.ViewModel
 
         public HomeVM(User loggedInUser, Window view)
         {
+            //System.Diagnostics.PresentationTraceSources.SetTraceLevel(this.View.dataGrid.ItemContainerGenerator, System.Diagnostics.PresentationTraceLevel.High);
             CurrentUser = loggedInUser;
             this.View = view;
 
+            //InMemoryAppender.LogData
 
             selectedSubstationChangedCmd = new SubstationSelectionChanged(this);
             selectedDeviceChangedCmd = new DeviceSelectionChanged(this);

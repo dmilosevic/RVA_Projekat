@@ -26,6 +26,7 @@ namespace Client.Commands
             }
 
             DataProxy.Instance.Proxy.DeleteDevice(homeVM.selectedDevice.Id);
+            LoginVM.Log.Info($"Device deleted. Id=('{homeVM.selectedDevice.Id}')");
 
             homeVM.RefreshData();
 

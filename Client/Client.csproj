@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.ServiceModel" />
@@ -86,6 +89,7 @@
     <Compile Include="Commands\SubstationSelectionChanged.cs" />
     <Compile Include="Commands\UndoCommand.cs" />
     <Compile Include="Converter\MultiValueConverter.cs" />
+    <Compile Include="InMemoryAppender.cs" />
     <Compile Include="Proxy\DataProxy.cs" />
     <Compile Include="Proxy\UserProxy.cs" />
     <Compile Include="ViewModel\AddDeviceVM.cs" />
@@ -183,6 +187,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

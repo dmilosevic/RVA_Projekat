@@ -19,8 +19,10 @@ namespace Client.Commands
 
         public override void Execute(object parameter)
         {
+
             bool success = UserProxy.Instance.Proxy.SignOut(homeVM.CurrentUser.Username);
-            
+            LoginVM.Log.Info($"User signed out. Username=('{homeVM.CurrentUser.Username}')");
+
             Login window = new Login();
             window.Show();
             homeVM.View.Close();

@@ -24,6 +24,7 @@ namespace Client.Commands
             conflictVM.view.Close();
             conflictVM.editSubsVM.EditView.Close();
             conflictVM.editSubsVM.HomeVM.RefreshData();
+            LoginVM.Log.Info("Conflict arrised. Changes Discarded");
         }
     }
 }

@@ -26,6 +26,7 @@ namespace Client.Commands
             }
 
             DataProxy.Instance.Proxy.DeleteMeasurement(homeVM.selectedMeasurement.Id);
+            LoginVM.Log.Info($"Measurement deleted. Id=('{homeVM.selectedMeasurement.Id}')");
 
             homeVM.RefreshData();
 

@@ -42,7 +42,7 @@ namespace Client.Commands
 
             if(success)
             {
-                MessageBox.Show("Successfuly updated user info", "Success");
+                LoginVM.Log.Info($"User updated. Username = ('{userToUpdate.Username}')");
 
                 editUserVM.View.Close();
                 editUserVM.homeVM.CurrentUser = new User()
@@ -59,7 +59,7 @@ namespace Client.Commands
             }
             else
             {
-                MessageBox.Show("Could not update user info", "Failure");
+                LoginVM.Log.Error($"Could not update user info. Username = ('{userToUpdate.Username}')");
             }
         }
     }

@@ -21,19 +21,18 @@ namespace Server.Services
             {
                 using (var context = new DataContext())
                 {
-                    var existingDevice = context.Devices.FirstOrDefault(x =>  x.Id == device.Id &&
-                            //x.Device_Substation.Id == device.Device_Substation.Id && 
-                            x.Name == device.Name); //returns null if no match
+                    var existingDevice = context.Devices.FirstOrDefault(x => x.Id == device.Id); //returns null if no match
 
                     if (existingDevice != null)
                     {
-                        //device with this name already exists at the same substation
+                        Program.Log.Error($"Tried to add device with existing Id (ID='{device.Id}')");
                         return false;
                     }
                     context.Devices.Add(device);
                     context.SaveChanges();
                 }
             }
+            Program.Log.Info($"New device has been added (ID = '{device.Id}')");
             return true;
         }
 
@@ -43,19 +42,18 @@ namespace Server.Services
             {
                 using (var context = new DataContext())
                 {
-                    var existingMeasurement = context.Measurements.FirstOrDefault(x => x.Id == meas.Id &&
-                            //x.Measurement_Device.Id == meas.Measurement_Device.Id &&
-                            x.DateTime == meas.DateTime); //returns null if no match
+                    var existingMeasurement = context.Measurements.FirstOrDefault(x => x.Id == meas.Id);
 
                     if (existingMeasurement != null)
                     {
-                        //measurement with this time already exists for this device
+                        Program.Log.Error($"Tried to add measurement with existing Id (ID='{meas.Id}')");
                         return false;
                     }
                     context.Measurements.Add(meas);
                     context.SaveChanges();
                 }
             }
+            Program.Log.Info($"New measurement has been added (ID = '{meas.Id}')");
             return true;
         }
 
@@ -69,7 +67,7 @@ namespace Server.Services
                     
                     if (existingStation != null)
                     {
-                        //substation with this Id
+                        Program.Log.Error($"Tried to add substation with existing Id (ID='{sub.Id}')");
                         return false;
                     }
                     context.Substations.Add(sub);
@@ -80,6 +78,7 @@ namespace Server.Services
                     });
                 }
             }
+            Program.Log.Info($"New substation has been added (ID = '{sub.Id}')");
             return true;
         }
 
@@ -109,12 +108,16 @@ namespace Server.Services
                 {
                     var dev = context.Devices.FirstOrDefault(x => x.Id == id);
                     if (dev == null)
+                    {
+                        Program.Log.Error($"Tried to delete non-existing device (ID='{id}')");
                         return false;
+                    }
 
                     context.Devices.Remove(dev);
                     context.SaveChanges();
                 }
             }
+            Program.Log.Info($"Device has been deleted (ID = '{id}')");
             return true;
         }
 
@@ -126,12 +129,16 @@ namespace Server.Services
                 {
                     var measurement = context.Measurements.FirstOrDefault(x => x.Id == id);
                     if (measurement == null)
-                        return false;                    
+                    {
+                        Program.Log.Error($"Tried to delete non-existing measurement (ID='{id}')");
+                        return false;
+                    }
 
                     context.Measurements.Remove(measurement);
                     context.SaveChanges();
                 }
             }
+            Program.Log.Info($"Measurement has been deleted (ID = '{id}')");
             return true;
         }
 
@@ -143,8 +150,10 @@ namespace Server.Services
                 {
                     var station = context.Substations.FirstOrDefault(x => x.Id == id);
                     if (station == null)
+                    {
+                        Program.Log.Error($"Tried to delete non-existing substation (ID='{id}')");
                         return false;
-
+                    }
                     //first delete containing devices
                     var devicesInThisSubstation = GetDevices(new Substation() { Id = id });
                     foreach (var device in devicesInThisSubstation)
@@ -171,6 +180,7 @@ namespace Server.Services
                     });
                 }
             }
+            Program.Log.Info($"Substation has been deleted (ID = '{id}')");
             return true;
         }
 
@@ -181,7 +191,11 @@ namespace Server.Services
                 using (var context = new DataContext())
                 {
                     var substations = context.Substations;
+
+                    Program.Log.Info("All substations has been requested and returned");
+
                     return substations.ToList();
+
                 }
             }
         }
@@ -192,8 +206,8 @@ namespace Server.Services
             {
                 using (var context = new DataContext())
                 {
-                    var devices = context.Devices.Where(x => x.Device_Substation == substation.Id); //it should work xD
-
+                    var devices = context.Devices.Where(x => x.Device_Substation == substation.Id);
+                    Program.Log.Info($"All devices in substation have been requested and returned. Substation_ID = ('{substation.Id}')");
                     return devices.ToList();
                 }
             }
@@ -206,6 +220,7 @@ namespace Server.Services
                 using (var context = new DataContext())
                 {
                     var measurements = context.Measurements.Where(x => x.Measurement_Device == device.Id);
+                    Program.Log.Info($"All measurements in device have been requested and returned. Device_ID = ('{device.Id}')");
                     return measurements.ToList();
                 }
             }
@@ -218,6 +233,7 @@ namespace Server.Services
                 using (var context = new DataContext())
                 {
                     var substation = context.Substations.FirstOrDefault(x => x.Id == id);
+                    Program.Log.Info($"Substation was returned. Substation_ID = ('{id}')");
                     return substation;
                 }
             }
@@ -231,7 +247,10 @@ namespace Server.Services
                 {
                     var deviceFromDB = context.Devices.FirstOrDefault(x => x.Id == device.Id);
                     if (deviceFromDB == null)
+                    {
+                        Program.Log.Error($"Update to non-existing device. ID = ('{device.Id}')");
                         return false;
+                    }
 
                     deviceFromDB.Device_Substation = device.Device_Substation;
                     deviceFromDB.Name = device.Name;                    
@@ -239,6 +258,7 @@ namespace Server.Services
                     context.SaveChanges();
                 }
             }
+            Program.Log.Info($"Device was updated. ID = ('{device.Id}')");
             return true;
         }
 
@@ -250,7 +270,10 @@ namespace Server.Services
                 {
                     var measFromDB = context.Measurements.FirstOrDefault(x => x.Id == meas.Id);
                     if (measFromDB == null)
+                    {
+                        Program.Log.Error($"Update to non-existing measurement. ID = ('{meas.Id}')");
                         return false;
+                    }
 
                     measFromDB.Measurement_Device = meas.Measurement_Device;
                     measFromDB.DateTime = meas.DateTime;
@@ -261,6 +284,7 @@ namespace Server.Services
                     context.SaveChanges();
                 }
             }
+            Program.Log.Info($"Measurement was updated. ID = ('{meas.Id}')");
             return true;
         }
 
@@ -272,8 +296,10 @@ namespace Server.Services
                 {
                     var subFromDB = context.Substations.FirstOrDefault(x => x.Id == sub.Id);
                     if (subFromDB == null)
+                    {
+                        Program.Log.Error($"Update to non-existing substation. ID = ('{sub.Id}')");
                         return false;
-
+                    }
                     subFromDB.Location = sub.Location;
                     subFromDB.Name = sub.Name;
 
@@ -284,6 +310,7 @@ namespace Server.Services
                     });
                 }
             }
+            Program.Log.Info($"Substation was updated. ID = ('{sub.Id}')");
             return true;
         }
 
@@ -294,6 +321,9 @@ namespace Server.Services
                 using (var context = new DataContext())
                 {
                     var devices = context.Devices;
+
+                    Program.Log.Info("All devices has been requested and returned");
+
                     return devices.ToList();
                 }
             }

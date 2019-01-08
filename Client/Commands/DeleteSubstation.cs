@@ -46,6 +46,7 @@ namespace Client.Commands
 
             DataProxy.Instance.Proxy.DeleteSubstation(subs.Id);
             viewModel.RefreshData();
+            LoginVM.Log.Info($"Substation deleted. Id=('{subs.Id}')");
 
             viewModel.UndoHistory.Add(this);
             viewModel.SubstationsUndo.Add(subs);            
@@ -60,6 +61,7 @@ namespace Client.Commands
             Substation subs = listSubs[listSubs.Count - 1];
             DataProxy.Instance.Proxy.AddSubstation(subs/*, viewModel.CurrentUser.Username*/);
             viewModel.RefreshData();
+            LoginVM.Log.Info($"UNDO command - Substation added. Id=('{subs.Id}')");
 
             viewModel.SubstationsUndo.RemoveAt(viewModel.SubstationsUndo.Count - 1);
             viewModel.RedoHistory.Add(this);

@@ -53,12 +53,12 @@ namespace Client.Commands
 
             if(success)
             {
-                MessageBox.Show("User added", "Success");
+                LoginVM.Log.Info($"User added successfuly. Username=('{newUser.Username}')");
                 addUserVM.View.Close();
             }
             else
             {
-                MessageBox.Show("User with this usrname already exists", "Failure");
+                LoginVM.Log.Error($"User with this username already exists. Username=('{newUser.Username}')");
             }
         }
     }

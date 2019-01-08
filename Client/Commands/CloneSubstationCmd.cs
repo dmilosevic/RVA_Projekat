@@ -34,12 +34,12 @@ namespace Client.Commands
 
             if (!success)
             {
-                MessageBox.Show("Substation clone could not be added", "Report");
+                LoginVM.Log.Error($"Substation clone could not be added. CloneId=('{clone.Id}')");
                 return;
             }
             else
             {
-                MessageBox.Show("Substation clone added successfuly", "Report");
+                LoginVM.Log.Info($"Substation clone added successfuly. CloneId=('{clone.Id}')");
             }
         }
     }
