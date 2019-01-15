@@ -1,4 +1,5 @@
-﻿using Client.ViewModel;
+﻿using Client.Proxy;
+using Client.ViewModel;
 using Common.Model;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,10 @@ namespace Client.Commands
             object[] parameters = new object[3];
             parameters[0] = subs.Name;
             parameters[1] = subs.Location;
+
+            if (cmd is DeleteSubstation)
+                subs.Id = DataProxy.Instance.Proxy.GetIdOfLastAddedSubstation();
+            
             parameters[2] = subs.Id;
 
             cmd.Execute(parameters);

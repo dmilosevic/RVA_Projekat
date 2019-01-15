@@ -30,15 +30,28 @@ namespace Client.Commands
 
             Substation clone = subs.Clone();
 
-            bool success = DataProxy.Instance.Proxy.AddSubstation(clone);
+            //bool success = DataProxy.Instance.Proxy.AddSubstation(clone);
 
-            if (!success)
+            //if (!success)
+            //{
+            //    LoginVM.Log.Error($"Substation clone could not be added. CloneId=('{clone.Id}')");
+            //    return;
+            //}
+            //else
+            //{
+            //    LoginVM.Log.Info($"Substation clone added successfuly. CloneId=('{clone.Id}')");
+            //}
+
+            int Id = DataProxy.Instance.Proxy.AddSubstation(clone);
+
+            if (Id == -1)
             {
-                LoginVM.Log.Error($"Substation clone could not be added. CloneId=('{clone.Id}')");
+                LoginVM.Log.Error($"Substation clone could not be added. (Duplicate ID)");
                 return;
             }
             else
             {
+                clone.Id = Id;
                 LoginVM.Log.Info($"Substation clone added successfuly. CloneId=('{clone.Id}')");
             }
         }

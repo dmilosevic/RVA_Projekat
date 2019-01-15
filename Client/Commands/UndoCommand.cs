@@ -28,7 +28,7 @@ namespace Client.Commands
             BaseCommand cmd = viewModel.UndoHistory[viewModel.UndoHistory.Count - 1]; //get last item
             cmd.UnExecute();
             viewModel.UndoHistory.Remove(cmd);
-            LoginVM.Log.Info("UNDo command invoked");
+            LoginVM.Log.Info("UNDO command invoked");
             //viewModel.SubstationsUndo.RemoveAt(viewModel.SubstationsUndo.Count - 1);
         }
     }

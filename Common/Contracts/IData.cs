@@ -14,13 +14,16 @@ namespace Common.Contracts
         #region CREATE operations
 
         [OperationContract]
-        bool AddSubstation(Substation sub/*, string user*/);
+        int AddSubstation(Substation sub/*, string user*/);
 
         [OperationContract]
         bool AddDevice(Device device);
 
         [OperationContract]
         bool AddMeasurement(Measurement meas);
+
+        [OperationContract]
+        int GetIdOfLastAddedSubstation();
 
         #endregion
 

@@ -57,7 +57,7 @@ namespace Server.Services
             return true;
         }
 
-        public bool AddSubstation(Substation sub/*, string user*/)
+        public int AddSubstation(Substation sub)
         {
             lock (dummyObj)
             {
@@ -68,10 +68,11 @@ namespace Server.Services
                     if (existingStation != null)
                     {
                         Program.Log.Error($"Tried to add substation with existing Id (ID='{sub.Id}')");
-                        return false;
+                        return -1;
                     }
                     context.Substations.Add(sub);
                     context.SaveChanges();
+                    
                     Task.Factory.StartNew(() =>
                     {
                         NotifyUsersAboutChange();
@@ -79,7 +80,7 @@ namespace Server.Services
                 }
             }
             Program.Log.Info($"New substation has been added (ID = '{sub.Id}')");
-            return true;
+            return sub.Id;
         }
 
         private void NotifyUsersAboutChange(/*string currentUser*/)
@@ -325,6 +326,22 @@ namespace Server.Services
                     Program.Log.Info("All devices has been requested and returned");
 
                     return devices.ToList();
+                }
+            }
+        }
+
+        public int GetIdOfLastAddedSubstation()
+        {
+            lock (dummyObj)
+            {
+                using (var context = new DataContext())
+                {
+                    var substations = context.Substations;
+
+                    int Id = substations.FirstOrDefault(s => s.Id == context.Substations.Max(x => x.Id)).Id;
+
+                    Program.Log.Info("Id of last added substation has been requested and returned");
+                    return Id;
                 }
             }
         }

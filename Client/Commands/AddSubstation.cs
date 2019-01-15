@@ -27,7 +27,7 @@ namespace Client.Commands
                 return;
 
             Object[] parameters = parameter as Object[];
-            if (parameters == null || parameters.Length != 2)
+            if (parameters == null)
                 return;
 
             foreach (var v in parameters)
@@ -42,15 +42,37 @@ namespace Client.Commands
 
             Substation newSub = new Substation() { Name = name, Location = location };
 
-            bool success = DataProxy.Instance.Proxy.AddSubstation(newSub/*, viewModel.homeVM.CurrentUser.Username*/);
+            //bool success = DataProxy.Instance.Proxy.AddSubstation(newSub);
 
-            if(!success)
+            int Id = DataProxy.Instance.Proxy.AddSubstation(newSub);
+
+
+            //if (!success)
+            //{
+            //    LoginVM.Log.Error($"Tried to add duplicate Substation. Id=('{newSub.Id}')");
+            //    return;
+            //}
+            //else
+            //{
+            //    LoginVM.Log.Info($"Substation added successfuly. Id=('{newSub.Id}')");
+
+            //    //save for undo
+            //    viewModel.homeVM.UndoHistory.Add(this);
+            //    viewModel.homeVM.SubstationsUndo.Add(newSub);
+
+
+            //    viewModel.homeVM.RefreshData();
+            //    viewModel.view.Close();
+            //}   
+
+            if (Id == -1)
             {
-                LoginVM.Log.Error($"Tried to add duplicate Substation. Id=('{newSub.Id}')");
+                LoginVM.Log.Error($"Tried to add duplicate Substation.");
                 return;
             }
             else
             {
+                newSub.Id = Id;
                 LoginVM.Log.Info($"Substation added successfuly. Id=('{newSub.Id}')");
 
                 //save for undo
@@ -60,7 +82,7 @@ namespace Client.Commands
 
                 viewModel.homeVM.RefreshData();
                 viewModel.view.Close();
-            }            
+            }
         }
 
         public override void UnExecute()
@@ -73,7 +95,7 @@ namespace Client.Commands
             viewModel.homeVM.SubstationsUndo.RemoveAt(viewModel.homeVM.SubstationsUndo.Count - 1);
             viewModel.homeVM.RefreshData();
 
-            LoginVM.Log.Info($"UNDO command - Substation deleted. Id=('{subs.Id}')");
+            LoginVM.Log.Info($"UNDO command invoked - Substation deleted. Id=('{subs.Id}')");
 
             viewModel.homeVM.RedoHistory.Add(this);
             viewModel.homeVM.SubstationsRedo.Add(subs);
